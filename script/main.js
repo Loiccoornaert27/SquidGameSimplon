@@ -43,7 +43,7 @@ function whoPlayFirst(playerTurn) {
     return playerTurn;
 }
 //Initialisation du stock de billes
-let numMarblesPlayer = 7;
+let numMarblesPlayer = 10;
 let numMarblesIA = 10;
 //Pari de l'IA
 let marblesBetIA;
