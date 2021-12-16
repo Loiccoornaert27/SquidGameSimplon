@@ -48,14 +48,22 @@ function whoPlayFirst(playerTurn:boolean){
 }
 
 //Initialisation du stock de billes
-let numMarblesPlayer: number = 5;
+let numMarblesPlayer: number = 7;
 let numMarblesIA: number = 10;
 
 //Pari de l'IA
 let marblesBetIA:number;
 function initBetIA(numMarblesIA:number,numMarblesPlayer: number){
     let min = Math.ceil(1);
-    let max = Math.floor(numMarblesIA+1&&numMarblesPlayer+1);
+    //20% de chance de parier plus que le stock de billes du joueur
+    let chanceToBetMore=Math.random();
+    console.log(chanceToBetMore);
+    let max:number;
+    if(chanceToBetMore<0.7){
+        max = Math.floor(numMarblesIA+1&&numMarblesPlayer+1);
+    }else{
+        max = Math.floor(numMarblesIA+1);
+    }
     return Math.floor(Math.random() * (max - min)) + min;
 }
 marblesBetIA = initBetIA(numMarblesIA,numMarblesPlayer);
