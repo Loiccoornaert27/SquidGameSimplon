@@ -26,7 +26,7 @@ function aiChoose(){
     if(num%2 == 0){
         return "pair";
     }
-    else if(num % 2 !=0){
+    else {
         return "impair";
     }
 }
@@ -75,7 +75,6 @@ function initBetIA(numMarblesIA:number,numMarblesPlayer: number){
     let min = Math.ceil(1);
     //20% de chance de parier plus que le stock de billes du joueur
     let chanceToBetMore=Math.random();
-    console.log(chanceToBetMore);
     let max:number;
     if(chanceToBetMore<0.7){
         max = Math.floor(numMarblesIA+1&&numMarblesPlayer+1);
