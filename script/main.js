@@ -1,11 +1,23 @@
 "use strict";
 let choixUser; //Va stocker si le choix est pair ou impaire
-const btnStart = document.getElementById("btnStart");
+const btnStart = document.getElementsByClassName("start-button")[0];
 const btnPair = document.getElementById("btnPair");
 const btnImpair = document.getElementById("btnImpair");
+const closeWindowRules = document.getElementsByClassName("close-rules")[0];
+btnStart.addEventListener("click", start);
+closeWindowRules.addEventListener("click", closeRules);
 function start() {
+    const screenStart = document.getElementsByClassName("screen-start")[0];
+    const screenRules = document.getElementsByClassName("screen-rules")[0];
+    screenStart.setAttribute("style", "display: none");
+    screenRules.setAttribute("style", "display: block");
 }
-btnStart === null || btnStart === void 0 ? void 0 : btnStart.addEventListener("click", start);
+function closeRules() {
+    const screenRules = document.getElementsByClassName("screen-rules")[0];
+    const screenGame = document.getElementsByClassName("screen-game")[0];
+    screenRules.setAttribute("style", "display: none");
+    screenGame.setAttribute("style", "display: block");
+}
 function pairClick() {
     return "pair";
 }
@@ -62,7 +74,7 @@ let numMarblesIA = 10;
 //Pari de l'IA
 let marblesBetIA;
 function initBetIA(numMarblesIA, numMarblesPlayer) {
-    let min = Math.ceil(1);
+    let min = 1;
     //20% de chance de parier plus que le stock de billes du joueur
     let chanceToBetMore = Math.random();
     console.log(chanceToBetMore);

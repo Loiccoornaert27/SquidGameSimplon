@@ -7,7 +7,7 @@
 
 /* -----------------Start Button----------------- */
 .screen-start {
-    display: none;
+    /* display: none; */
     width: 100vw;
     height: 100vh;
     z-index: -1;
@@ -77,7 +77,7 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    /* display: none; */
+    display: none;
 }
 
 .display-text {
@@ -89,7 +89,7 @@
     justify-content: center;
     align-items: center;
     width: 80%;
-    display: none;
+    /* display: none; */
 }
 
 .marble {
@@ -104,7 +104,7 @@
     bottom: 0px;
     left: 50%;
     transform: translate(-50%, -20%);
-    display: none;
+    /* display: none; */
 }
 
 .player-choice {
