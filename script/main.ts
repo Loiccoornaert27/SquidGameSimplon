@@ -1,6 +1,13 @@
 let choixUser : String; //Va stocker si le choix est pair ou impaire
+const btnStart = document.getElementById("btnStart");
 const btnPair = document.getElementById("btnPair"); 
 const btnImpair = document.getElementById("btnImpair");
+
+function start(){
+
+}
+
+btnStart?.addEventListener("click",start);
 
 function pairClick(){
     return "pair";
