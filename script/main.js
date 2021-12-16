@@ -32,7 +32,7 @@ function aiChoose() {
     if (num % 2 == 0) {
         return "pair";
     }
-    else if (num % 2 != 0) {
+    else {
         return "impair";
     }
 }
