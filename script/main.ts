@@ -13,6 +13,17 @@ function impairClick(){
 
 btnImpair?.addEventListener("click",impairClick);
 
+/*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
+function aiChoose(){
+    let num= Math.floor(Math.random()*10);
+    if(num%2 == 0){
+        return "pair";
+    }
+    else if(num % 2 !=0){
+        return "impair";
+    }
+}
+
 /*****Fonction qui décide qui gagne et qui perd ********/
 //nbBilles : le nombre de billes choisies
 //choixUser : pair ou impair
