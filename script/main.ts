@@ -21,3 +21,9 @@ function checkResult(nbBilles : number,choixUser: String,nbPari:number, isJoueur
         }
     }
 }
+
+//Fonction qui désigne aléatoirement qui va jouer le premier joueur, introduit la variable playerTurn qui définit si c'est le tour du joueur ou non
+function whoPlayFirst(playerTurn:boolean){
+    playerTurn=Math.random()<0.5;
+    console.log(playerTurn)
+}
