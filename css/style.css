@@ -7,7 +7,7 @@
 
 /* -----------------Start Button----------------- */
 .screen-start {
-    display: none;
+    /* display: none; */
     width: 100vw;
     height: 100vh;
     z-index: -1;
