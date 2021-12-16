@@ -1,7 +1,11 @@
 "use strict";
 let choixUser; //Va stocker si le choix est pair ou impaire
+const btnStart = document.getElementById("btnStart");
 const btnPair = document.getElementById("btnPair");
 const btnImpair = document.getElementById("btnImpair");
+function start() {
+}
+btnStart === null || btnStart === void 0 ? void 0 : btnStart.addEventListener("click", start);
 function pairClick() {
     return "pair";
 }
@@ -10,6 +14,16 @@ function impairClick() {
     return "impair";
 }
 btnImpair === null || btnImpair === void 0 ? void 0 : btnImpair.addEventListener("click", impairClick);
+/*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
+function aiChoose() {
+    let num = Math.floor(Math.random() * 10);
+    if (num % 2 == 0) {
+        return "pair";
+    }
+    else if (num % 2 != 0) {
+        return "impair";
+    }
+}
 /*****Fonction qui décide qui gagne et qui perd ********/
 //nbBilles : le nombre de billes choisies
 //choixUser : pair ou impair
