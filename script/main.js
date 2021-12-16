@@ -75,13 +75,16 @@ function checkResult(nbBilles, choixUser, nbPari, isJoueur) {
     }
 }
 //Fonction qui désigne aléatoirement qui va jouer le premier joueur, introduit la variable playerTurn qui définit si c'est le tour du joueur ou non
+let playerTurn = true;
 function whoPlayFirst(playerTurn) {
     playerTurn = Math.random() < 0.5;
     return playerTurn;
 }
+playerTurn = whoPlayFirst(playerTurn);
+console.log("playerTurn is " + playerTurn);
 //Initialisation du stock de billes
 let numMarblesPlayer = 10;
-let numMarblesIA = 10;
+let numMarblesAI = 10;
 //Pari de l'IA
 let marblesBetIA;
 function initBetIA(numMarblesIA, numMarblesPlayer) {
@@ -93,7 +96,12 @@ function initBetIA(numMarblesIA, numMarblesPlayer) {
         max = Math.floor(numMarblesIA + 1 && numMarblesPlayer + 1);
     }
     else {
-        max = Math.floor(numMarblesIA + 1);
+        max = Math.floor(numMarblesAI + 1);
     }
     return Math.floor(Math.random() * (max - min)) + min;
+}
+marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
+//Boucle de jeu
+while (numMarblesPlayer || numMarblesAI > 0) {
+    (playerTurn == true ? false : true);
 }
