@@ -59,7 +59,7 @@ function checkResult(nbBilles : number,choixUser: String,nbPari:number, isJoueur
     }
 }
 
-//Fonction qui désigne aléatoirement qui va jouer le premier joueur, introduit la variable playerTurn qui définit si c'est le tour du joueur ou non
+//Fonction qui désigne aléatoirement qui va jouer en premier, introduit la variable playerTurn qui définit si c'est le tour du joueur ou non
 let playerTurn:boolean=true;
 function whoPlayFirst(playerTurn:boolean){
     playerTurn=Math.random()<0.5;
@@ -96,4 +96,15 @@ while(numMarblesPlayer||numMarblesAI>0){
    
     (playerTurn==true?false:true)
    }
-   
+
+
+ //Fonction d'ajout ou de retrait  
+function addRemoveMarbles(numMarblesAI:number,numMarblesPlayer: number,nbPari:number){
+    if (playerTurn==true){
+        
+        numMarblesAI-=nbPari;
+    }else{
+        numMarblesAI+=nbPari;
+        numMarblesPlayer-=nbPari;
+    }
+}
