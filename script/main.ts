@@ -101,7 +101,7 @@ while(numMarblesPlayer||numMarblesAI>0){
  //Fonction d'ajout ou de retrait  
 function addRemoveMarbles(numMarblesAI:number,numMarblesPlayer: number,nbPari:number){
     if (playerTurn==true){
-        
+        numMarblesPlayer+=nbPari;
         numMarblesAI-=nbPari;
     }else{
         numMarblesAI+=nbPari;
