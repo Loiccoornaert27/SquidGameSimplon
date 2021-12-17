@@ -9,7 +9,6 @@ const player_hand = document.querySelector(".playerHand-close") as HTMLDivElemen
 const ai_hand = document.querySelector(".iaHand-close") as HTMLDivElement;
 let txtMain = document.querySelector(".display-text") as HTMLDivElement;
 const btnRules  = document.getElementsByClassName("rules-button")[0] as HTMLElement;
-const popRules = document.getElementsByClassName("screen-rules")[0] as HTMLElement; 
 
 let playerTurn:boolean=true; // tour du joueur vrai/faux
 let choixUser : String; //Va stocker si le choix est pair ou impair
@@ -21,12 +20,18 @@ let marblesBetAI:number;// Nombre de billes parié par l'IA
 // Cache l'écran Start et Affiche l'écran des règles
 function start() {
     const screenStart = document.getElementsByClassName("screen-start")[0];
-    const screenRules = document.getElementsByClassName("screen-rules")[0];
     screenStart.setAttribute("style", "display: none");
-    screenRules.setAttribute("style", "display: block");
 }
 btnStart.addEventListener("click",start);
-closeWindowRules.addEventListener("click",closeRules);
+
+//Affichage des règles du jeu
+//btnRules : bouton qui affiche les règles
+//popRules : pop up des règles
+function showRules(screenRules:HTMLDivElement){
+    screenRules.setAttribute("style", "display: block");
+    console.log("les regles vont s'afficher");
+}
+btnRules.addEventListener("click",() => {showRules(screenRules)});
 
 
 // Cache l'écran des règles et Affiche l'écran de jeu
@@ -39,7 +44,9 @@ function closeRules() {
     screenRules.setAttribute("style", "display: none");
     screenGame.setAttribute("style", "display: block");
 }
+closeWindowRules.addEventListener("click",closeRules);
 
+//Fonction qui enregistre le pair
 function pairClick(){
     
     btnPair.setAttribute("style", "display: none");
@@ -50,6 +57,7 @@ function pairClick(){
 }
 btnPair.addEventListener("click",pairClick);
 
+//Fonction qui enregistre le pair
 function impairClick(){
     
     btnPair.setAttribute("style", "display: none");
@@ -58,12 +66,11 @@ function impairClick(){
     ai_hand.setAttribute("style","display : flex");
     choixUser="impair";
 }
-
 btnImpair.addEventListener("click",impairClick);
+
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
 function generateMarblesPlayerImage() {
     const playerMarbles = document.getElementsByClassName("player-marbles")[0];
-
     for (let i = 1; i <= numMarblesPlayer; i++) {
         // Création de l'image
         let img = document.createElement('img');
@@ -77,6 +84,7 @@ function generateMarblesPlayerImage() {
     }
 }
 
+//Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble : number){
     marblesBetPlayer = numberOfMarble;
     displayConfirmationButton();
@@ -174,14 +182,11 @@ function whoPlayFirst(playerTurn:boolean){
 playerTurn= whoPlayFirst(playerTurn);
 console.log("playerTurn is "+playerTurn)
 
-
-
 //Pari de l'IA
 //Génère un nombre de billes pariées par l'IA
 //numMarblesAI : nombres de billes de l'IA
 //numMarblesPlayer : nombres de billes du joueur
 //marblesBetIA : pari de l'IA
-
 function initBetAI(numMarblesAI:number,numMarblesPlayer: number){
     let min = Math.ceil(1);
     //20% de chance de parier plus que le stock de billes du joueur
@@ -206,6 +211,7 @@ function addRemoveMarbles(numMarblesAI:number,numMarblesPlayer: number,nbPari:nu
         numMarblesPlayer-=nbPari;
     }
 }
+
 //Boucle de jeu
 // while(numMarblesPlayer||numMarblesAI>0){
     
@@ -213,14 +219,4 @@ function addRemoveMarbles(numMarblesAI:number,numMarblesPlayer: number,nbPari:nu
 //     (playerTurn==true?false:true)
 //    }
 
-//Affichage des règles du jeu
-//btnRules : bouton qui affiche les règles
-//popRules : pop up des règles
-function showRules(popRules:HTMLElement){
-    popRules.setAttribute("style", "display: normal");
-    // popRules.style.display="normal";
-    console.log("les regles vont s'afficher");
-}
 
-btnRules.addEventListener("click",() => {showRules(popRules)});
-// btnRules.addEventListener("click",() => {popRules.setAttribute("style", "display: true")});
