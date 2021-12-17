@@ -1,24 +1,28 @@
 let choixUser : String; //Va stocker si le choix est pair ou impaire
-const btnStart = document.getElementById("btnStart");
-const btnPair = document.getElementById("btnPair"); 
-const btnImpair = document.getElementById("btnImpair");
+const btnStart = document.getElementsByClassName("start-button")[0] as HTMLDivElement;
+const btnPair = document.getElementsByClassName("pair-bloc choice")[0] as HTMLDivElement; 
+const btnImpair = document.getElementsByClassName("impair-bloc choice")[0] as HTMLDivElement;
+const btnCloseHelp = document.getElementsByClassName("close-rules")[0] as HTMLDivElement;
+let txtMain = document.getElementsByClassName("display-text")[0] as HTMLDivElement;
 
 function start(){
 
 }
 
-btnStart?.addEventListener("click",start);
+btnStart.addEventListener("click",start);
 
 function pairClick(){
+    btnPair.setAttribute("style", "display: none");
+    btnImpair.setAttribute("style", "display: none");
     return "pair";
 }
-btnPair?.addEventListener("click",pairClick);
+btnPair.addEventListener("click",pairClick);
 
 function impairClick(){
     return"impair";
 }
 
-btnImpair?.addEventListener("click",impairClick);
+btnImpair.addEventListener("click",impairClick);
 
 /*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
 function aiChoose(){
@@ -39,21 +43,21 @@ function aiChoose(){
 function checkResult(nbBilles : number,choixUser: String,nbPari:number, isJoueur:Boolean ){
     if(nbBilles % 2 == 0){
         if(choixUser=="pair" && isJoueur || choixUser=="impair" && !isJoueur){
-            console.log('tu gagnes '+nbPari +' billes');  //A changer en inner HTML
+            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
             return nbPari;
         }
         else if(choixUser=="impair" && isJoueur || choixUser=="pair" && !isJoueur){
-            console.log('tu perds ' +nbPari+ ' billes');  //A changer en inner HTML
+            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
             return nbPari*(-1);
         }
     }
     else if(nbBilles % 2 != 0){
         if(choixUser=="impair" && isJoueur || choixUser=="pair" && !isJoueur){
-            console.log('tu gagnes '+nbPari +' billes');  //A changer en inner HTML
+            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
             return nbPari;
         }
         else if(choixUser=="pair" && isJoueur || choixUser=="impair" && !isJoueur){
-            console.log('tu perds ' +nbPari+ ' billes');  //A changer en inner HTML
+            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
             return nbPari*(-1);
         }
     }
