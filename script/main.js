@@ -10,7 +10,6 @@ const player_hand = document.querySelector(".playerHand-close");
 const ai_hand = document.querySelector(".iaHand-close");
 let txtMain = document.querySelector(".display-text");
 const btnRules = document.getElementsByClassName("rules-button")[0];
-const popRules = document.getElementsByClassName("screen-rules")[0];
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
 let numMarblesPlayer = 10; //Initialisation du stock de billes joueur
@@ -20,12 +19,17 @@ let marblesBetAI; // Nombre de billes parié par l'IA
 // Cache l'écran Start et Affiche l'écran des règles
 function start() {
     const screenStart = document.getElementsByClassName("screen-start")[0];
-    const screenRules = document.getElementsByClassName("screen-rules")[0];
     screenStart.setAttribute("style", "display: none");
-    screenRules.setAttribute("style", "display: block");
 }
 btnStart.addEventListener("click", start);
-closeWindowRules.addEventListener("click", closeRules);
+//Affichage des règles du jeu
+//btnRules : bouton qui affiche les règles
+//popRules : pop up des règles
+function showRules(screenRules) {
+    screenRules.setAttribute("style", "display: block");
+    console.log("les regles vont s'afficher");
+}
+btnRules.addEventListener("click", () => { showRules(screenRules); });
 // Cache l'écran des règles et Affiche l'écran de jeu
 function closeRules() {
     const screenRules = document.getElementsByClassName("screen-rules")[0];
@@ -34,6 +38,8 @@ function closeRules() {
     screenRules.setAttribute("style", "display: none");
     screenGame.setAttribute("style", "display: block");
 }
+closeWindowRules.addEventListener("click", closeRules);
+//Fonction qui enregistre le pair
 function pairClick() {
     btnPair.setAttribute("style", "display: none");
     btnImpair.setAttribute("style", "display: none");
@@ -42,6 +48,7 @@ function pairClick() {
     choixUser = "pair";
 }
 btnPair.addEventListener("click", pairClick);
+//Fonction qui enregistre le pair
 function impairClick() {
     btnPair.setAttribute("style", "display: none");
     btnImpair.setAttribute("style", "display: none");
@@ -63,6 +70,7 @@ function generateMarblesPlayerImage() {
         console.log("Nouvelle image généré !");
     }
 }
+//Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble) {
     marblesBetPlayer = numberOfMarble;
     displayConfirmationButton();
@@ -178,13 +186,3 @@ function addRemoveMarbles(numMarblesAI, numMarblesPlayer, nbPari) {
 // while(numMarblesPlayer||numMarblesAI>0){
 //     (playerTurn==true?false:true)
 //    }
-//Affichage des règles du jeu
-//btnRules : bouton qui affiche les règles
-//popRules : pop up des règles
-function showRules(popRules) {
-    popRules.setAttribute("style", "display: normal");
-    // popRules.style.display="normal";
-    console.log("les regles vont s'afficher");
-}
-btnRules.addEventListener("click", () => { showRules(popRules); });
-// btnRules.addEventListener("click",() => {popRules.setAttribute("style", "display: true")});
