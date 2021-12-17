@@ -1,11 +1,9 @@
 let choixUser : String; //Va stocker si le choix est pair ou impaire
 const btnStart = document.getElementsByClassName("start-button")[0];
-const btnPair = document.getElementById("btnPair"); 
-const btnImpair = document.getElementById("btnImpair");
+const btnPair = document.getElementById("pair-bloc choice")[0]; 
+const btnImpair = document.getElementById("impair-bloc choice")[0] as HTMLDivElement;
 const closeWindowRules = document.getElementsByClassName("close-rules")[0];
-
-btnStart.addEventListener("click",start);
-closeWindowRules.addEventListener("click",closeRules);
+let txtMain = document.getElementsByName("display-text")[0];
 
 function start(){
     const screenStart = document.getElementsByClassName("screen-start")[0];
@@ -15,6 +13,10 @@ function start(){
     screenRules.setAttribute("style", "display: block");
 }
 
+btnStart?.addEventListener("click",start);
+closeWindowRules.addEventListener("click",closeRules);
+
+
 function closeRules(){
     const screenRules = document.getElementsByClassName("screen-rules")[0];
     const screenGame = document.getElementsByClassName("screen-game")[0];
@@ -22,7 +24,7 @@ function closeRules(){
     screenRules.setAttribute("style", "display: none");
     screenGame.setAttribute("style", "display: block");
 }
-btnStart.addEventListener("click",start);
+btnStart?.addEventListener("click",start);
 
 function pairClick(){
     btnPair.setAttribute("style", "display: none");

@@ -1,24 +1,25 @@
 "use strict";
 let choixUser; //Va stocker si le choix est pair ou impaire
 const btnStart = document.getElementsByClassName("start-button")[0];
-const btnPair = document.getElementById("btnPair");
-const btnImpair = document.getElementById("btnImpair");
+const btnPair = document.getElementById("pair-bloc choice")[0];
+const btnImpair = document.getElementById("impair-bloc choice")[0];
 const closeWindowRules = document.getElementsByClassName("close-rules")[0];
-btnStart.addEventListener("click", start);
-closeWindowRules.addEventListener("click", closeRules);
+let txtMain = document.getElementsByName("display-text")[0];
 function start() {
     const screenStart = document.getElementsByClassName("screen-start")[0];
     const screenRules = document.getElementsByClassName("screen-rules")[0];
     screenStart.setAttribute("style", "display: none");
     screenRules.setAttribute("style", "display: block");
 }
+btnStart === null || btnStart === void 0 ? void 0 : btnStart.addEventListener("click", start);
+closeWindowRules.addEventListener("click", closeRules);
 function closeRules() {
     const screenRules = document.getElementsByClassName("screen-rules")[0];
     const screenGame = document.getElementsByClassName("screen-game")[0];
     screenRules.setAttribute("style", "display: none");
     screenGame.setAttribute("style", "display: block");
 }
-btnStart.addEventListener("click", start);
+btnStart === null || btnStart === void 0 ? void 0 : btnStart.addEventListener("click", start);
 function pairClick() {
     btnPair.setAttribute("style", "display: none");
     btnImpair.setAttribute("style", "display: none");
