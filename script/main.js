@@ -96,6 +96,9 @@ function displayOpenHands(show = true) {
         ai_hand_open.setAttribute("style", "display : none");
     }
 }
+function displayText(show = true) {
+    show ? txtMain.setAttribute("style", "display : flex") : txtMain.setAttribute("style", "display : none");
+}
 // -----------------------------------------------------------------------
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
 function generateMarblesPlayerImage() {
@@ -150,10 +153,13 @@ function sleep(ms) {
 }
 function revealHands() {
     return __awaiter(this, void 0, void 0, function* () {
+        displayText(false);
         displayCloseHands();
         yield sleep(2000);
         displayCloseHands(false);
         displayOpenHands();
+        updateTextMiddle("Texte a mettre pour le reveal ICI");
+        displayText();
     });
 }
 // ----------------------------------------------------------------------------------

@@ -104,6 +104,10 @@ function displayOpenHands(show = true){
     }
 }
 
+function displayText(show = true){
+    show ? txtMain.setAttribute("style","display : flex") : txtMain.setAttribute("style","display : none");
+}
+
 // -----------------------------------------------------------------------
 
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
@@ -173,11 +177,18 @@ function sleep(ms : number) {
   }
 
 async function revealHands(){
+    displayText(false);
     displayCloseHands();
+
     await sleep(2000);
+
     displayCloseHands(false);
     displayOpenHands();
+
+    updateTextMiddle("Texte a mettre pour le reveal ICI");
+    displayText();
 }
+
 
 
 
