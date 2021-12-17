@@ -138,7 +138,7 @@
     bottom: 0px;
     left: 50%;
     transform: translate(-50%, -20%);
-    /* display: none; */
+    display: none;
 }
 
 .player-choice {
