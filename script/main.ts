@@ -12,6 +12,7 @@ const btnRules  = document.getElementsByClassName("rules-button")[0] as HTMLElem
 
 let playerTurn:boolean=true; // tour du joueur vrai/faux
 let choixUser : String; //Va stocker si le choix est pair ou impair
+// let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
 let numMarblesPlayer: number = 10;//Initialisation du stock de billes joueur
 let numMarblesAI: number = 10;//Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
@@ -156,18 +157,18 @@ function checkResult(nbBilles : number,choixUser: String,nbPari:number, isJoueur
             txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
             return nbPari;
         }
-        else if(choixUser=="impair" && isJoueur || choixUser=="pair" && !isJoueur){
-            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
+        else{
+            txtMain.innerHTML='tu perds '+nbPari +' billes';  //A changer en inner HTML
             return nbPari*(-1);
         }
     }
-    else if(nbBilles % 2 != 0){
+    else{
         if(choixUser=="impair" && isJoueur || choixUser=="pair" && !isJoueur){
             txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
             return nbPari;
         }
-        else if(choixUser=="pair" && isJoueur || choixUser=="impair" && !isJoueur){
-            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
+        else{
+            txtMain.innerHTML='tu perds '+nbPari +' billes';  //A changer en inner HTML
             return nbPari*(-1);
         }
     }
@@ -175,12 +176,11 @@ function checkResult(nbBilles : number,choixUser: String,nbPari:number, isJoueur
 
 //Fonction qui désigne aléatoirement qui va jouer en premier,
 //playerTurn : tour du joueur (true) ou tour IA (false)
-function whoPlayFirst(playerTurn:boolean){
+function whoPlayFirst(){
     playerTurn=Math.random()<0.5;
     return playerTurn;
 }
-playerTurn= whoPlayFirst(playerTurn);
-console.log("playerTurn is "+playerTurn)
+
 
 //Pari de l'IA
 //Génère un nombre de billes pariées par l'IA
@@ -199,24 +199,41 @@ function initBetAI(numMarblesAI:number,numMarblesPlayer: number){
     }
     return Math.floor(Math.random() * (max - min)) + min;
 }
-marblesBetAI = initBetAI(numMarblesAI,numMarblesPlayer);
 
- //Fonction d'addition/soustraction des billes au stock en fonction de *Fonction qui décide qui gagne et qui perd *
-function addRemoveMarbles(numMarblesAI:number,numMarblesPlayer: number,nbPari:number){
-    if (playerTurn==true){
-        numMarblesPlayer+=nbPari;
-        numMarblesAI-=nbPari;
-    }else{
-        numMarblesAI+=nbPari;
-        numMarblesPlayer-=nbPari;
+// Boucle de jeu
+function game(){
+
+    playerTurn= whoPlayFirst();
+    while(true){
+        console.log("playerTurn is "+playerTurn);
+        marblesBetAI = initBetAI(numMarblesAI,numMarblesPlayer);
+        //inserer fct qui permet de determiner le pari du joueur en attendant prompt
+        marblesBetPlayer = Number(prompt("Quelle quantité de billes voulez vous parier"));
+        if(playerTurn){
+            //ajouter l'event pour choix joueur
+            choixUser = prompt("pair ou impair") as string;
+            
+             let winlose : number = checkResult(marblesBetAI,choixUser,marblesBetPlayer,playerTurn);
+            numMarblesPlayer += winlose;
+            numMarblesAI -= winlose;
+
+        }   else {
+            choixUser =aiChoose();
+            let winlose : number = checkResult(marblesBetPlayer,choixUser,marblesBetAI,playerTurn);
+            numMarblesPlayer += winlose;
+            numMarblesAI -= winlose;
+        }
+
+        console.log("nombres de billes joueur : "+numMarblesPlayer);
+        console.log("nombres de billes IA : "+numMarblesAI);
+
+        playerTurn===true?playerTurn=false:playerTurn=true;
+    if(numMarblesPlayer>0 || numMarblesAI>0){
+        break;
     }
-}
-
-//Boucle de jeu
-// while(numMarblesPlayer||numMarblesAI>0){
+    }
+    console.log("Céfini")
     
-   
-//     (playerTurn==true?false:true)
-//    }
 
+}
 
