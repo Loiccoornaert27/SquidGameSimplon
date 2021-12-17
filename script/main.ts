@@ -32,7 +32,6 @@ function pairClick(){
     btnImpair.setAttribute("style", "display: none");
     player_hand.setAttribute("style","display : flex");
     ai_hand.setAttribute("style","display : flex");
-    
     choixUser="pair";
 }
 btnPair.addEventListener("click",pairClick);
@@ -111,4 +110,3 @@ function initBetIA(numMarblesIA:number,numMarblesPlayer: number){
     }
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
