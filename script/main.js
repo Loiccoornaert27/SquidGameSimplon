@@ -3,6 +3,10 @@ let choixUser; //Va stocker si le choix est pair ou impaire
 const btnStart = document.getElementById("btnStart");
 const btnPair = document.getElementById("btnPair");
 const btnImpair = document.getElementById("btnImpair");
+let playerTurn = true;
+//Initialisation du stock de billes
+let numMarblesPlayer = 10;
+let numMarblesAI = 10;
 function start() {
 }
 btnStart === null || btnStart === void 0 ? void 0 : btnStart.addEventListener("click", start);
@@ -51,37 +55,47 @@ function checkResult(nbBilles, choixUser, nbPari, isJoueur) {
         }
     }
 }
-//Fonction qui désigne aléatoirement qui va jouer le premier joueur, introduit la variable playerTurn qui définit si c'est le tour du joueur ou non
+//Fonction qui désigne aléatoirement qui va jouer en premier,
+//playerTurn : tour du joueur (true) ou tour IA (false)
 function whoPlayFirst(playerTurn) {
     playerTurn = Math.random() < 0.5;
     return playerTurn;
 }
-//Initialisation du stock de billes
-let numMarblesPlayer = 10;
-let numMarblesIA = 10;
-
+playerTurn = whoPlayFirst(playerTurn);
+console.log("playerTurn is " + playerTurn);
 //Pari de l'IA
-let marblesBetIA;
-function initBetIA(numMarblesIA, numMarblesPlayer) {
-    let min = (1);
+//Génère un nombre de billes pariées par l'IA
+//numMarblesAI : nombres de billes de l'IA
+//numMarblesPlayer : nombres de billes du joueur
+//marblesBetIA : pari de l'IA
+let marblesBetAI;
+function initBetAI(numMarblesAI, numMarblesPlayer) {
+    let min = Math.ceil(1);
     //20% de chance de parier plus que le stock de billes du joueur
     let chanceToBetMore = Math.random();
     console.log(chanceToBetMore);
     let max;
     if (chanceToBetMore < 0.7) {
-        max = Math.floor(numMarblesIA + 1 && numMarblesPlayer + 1);
+        max = Math.floor(numMarblesAI + 1 && numMarblesPlayer + 1);
     }
     else {
-        max = Math.floor(numMarblesIA + 1);
+        max = Math.floor(numMarblesAI + 1);
     }
     return Math.floor(Math.random() * (max - min)) + min;
 }
-marblesBetIA = initBetIA(numMarblesIA, numMarblesPlayer);
-
-//boucle de jeu
-
-while(numMarblesPlayer||numMarblesIA>0){
- //insérer le code du jeu ici
-
- (playerTurn==true?false:true)
+marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
+//Fonction d'addition/soustraction des billes au stock en fonction de *Fonction qui décide qui gagne et qui perd *
+function addRemoveMarbles(numMarblesAI, numMarblesPlayer, nbPari) {
+    if (playerTurn == true) {
+        numMarblesPlayer += nbPari;
+        numMarblesAI -= nbPari;
+    }
+    else {
+        numMarblesAI += nbPari;
+        numMarblesPlayer -= nbPari;
+    }
+}
+//Boucle de jeu
+while (numMarblesPlayer || numMarblesAI > 0) {
+    (playerTurn == true ? false : true);
 }
