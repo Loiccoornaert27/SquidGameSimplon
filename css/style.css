@@ -14,8 +14,8 @@
 }
 
 .start-button {
-    width: 15px;
-    height: 15px;
+    width: 15vh;
+    height: 15vh;
     border: 2px solid black;
     border-radius: 50%;
     position: absolute;

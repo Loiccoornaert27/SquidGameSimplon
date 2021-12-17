@@ -129,7 +129,7 @@ function checkResult(nbBilles, choixUser, nbPari, isJoueur) {
             return nbPari;
         }
         else if (choixUser == "impair" && isJoueur || choixUser == "pair" && !isJoueur) {
-            txtMain.innerHTML = 'tu perds ' + nbPari + ' billes'; //A changer en inner HTML
+            txtMain.innerHTML = 'tu gagnes ' + nbPari + ' billes'; //A changer en inner HTML
             return nbPari * (-1);
         }
     }
@@ -139,7 +139,7 @@ function checkResult(nbBilles, choixUser, nbPari, isJoueur) {
             return nbPari;
         }
         else if (choixUser == "pair" && isJoueur || choixUser == "impair" && !isJoueur) {
-            txtMain.innerHTML = 'tu perds ' + nbPari + ' billes'; //A changer en inner HTML
+            txtMain.innerHTML = 'tu gagnes ' + nbPari + ' billes'; //A changer en inner HTML
             return nbPari * (-1);
         }
     }
@@ -171,8 +171,18 @@ function initBetAI(numMarblesAI, numMarblesPlayer) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
+//Fonction d'addition/soustraction des billes au stock en fonction de *Fonction qui décide qui gagne et qui perd *
+function addRemoveMarbles(numMarblesAI, numMarblesPlayer, nbPari) {
+    if (playerTurn == true) {
+        numMarblesPlayer += nbPari;
+        numMarblesAI -= nbPari;
+    }
+    else {
+        numMarblesAI += nbPari;
+        numMarblesPlayer -= nbPari;
+    }
+}
 //Boucle de jeu
 // while(numMarblesPlayer||numMarblesAI>0){
-//    penser a ajouter ligne =/- stock de billes  
 //     (playerTurn==true?false:true)
 //    }
