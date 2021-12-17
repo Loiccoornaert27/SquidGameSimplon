@@ -78,4 +78,3 @@ function initBetIA(numMarblesIA, numMarblesPlayer) {
     }
     return Math.floor(Math.random() * (max - min)) + min;
 }
-marblesBetIA = initBetIA(numMarblesIA, numMarblesPlayer);

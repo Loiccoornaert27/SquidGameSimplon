@@ -1,9 +1,9 @@
 let choixUser : String; //Va stocker si le choix est pair ou impaire
-const btnStart = document.getElementsByClassName("start-button")[0] as HTMLDivElement;
-const btnPair = document.getElementsByClassName("pair-bloc choice")[0] as HTMLDivElement; 
-const btnImpair = document.getElementsByClassName("impair-bloc choice")[0] as HTMLDivElement;
-const btnCloseHelp = document.getElementsByClassName("close-rules")[0] as HTMLDivElement;
-let txtMain = document.getElementsByClassName("display-text")[0] as HTMLDivElement;
+const btnStart = document.getElementsByClassName("start-button")[0] as HTMLButtonElement;
+const btnPair = document.getElementsByClassName("pair-bloc choice")[0] as HTMLButtonElement; 
+const btnImpair = document.getElementsByClassName("impair-bloc choice")[0] as HTMLButtonElement;
+const btnCloseHelp = document.getElementsByClassName("close-rules")[0] as HTMLButtonElement;
+let txtMain = document.getElementsByClassName("display-text")[0] as HTMLButtonElement;
 
 function start(){
 
@@ -87,6 +87,4 @@ function initBetIA(numMarblesIA:number,numMarblesPlayer: number){
     }
     return Math.floor(Math.random() * (max - min)) + min;
 }
-marblesBetIA = initBetIA(numMarblesIA,numMarblesPlayer);
-
 
