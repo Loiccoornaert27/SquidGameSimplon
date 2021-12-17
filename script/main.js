@@ -18,14 +18,17 @@ function closeRules() {
     screenRules.setAttribute("style", "display: none");
     screenGame.setAttribute("style", "display: block");
 }
+btnStart.addEventListener("click", start);
 function pairClick() {
+    btnPair.setAttribute("style", "display: none");
+    btnImpair.setAttribute("style", "display: none");
     return "pair";
 }
-btnPair === null || btnPair === void 0 ? void 0 : btnPair.addEventListener("click", pairClick);
+btnPair.addEventListener("click", pairClick);
 function impairClick() {
     return "impair";
 }
-btnImpair === null || btnImpair === void 0 ? void 0 : btnImpair.addEventListener("click", impairClick);
+btnImpair.addEventListener("click", impairClick);
 /*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
 function aiChoose() {
     let num = Math.floor(Math.random() * 10);
@@ -44,21 +47,21 @@ function aiChoose() {
 function checkResult(nbBilles, choixUser, nbPari, isJoueur) {
     if (nbBilles % 2 == 0) {
         if (choixUser == "pair" && isJoueur || choixUser == "impair" && !isJoueur) {
-            console.log('tu gagnes ' + nbPari + ' billes'); //A changer en inner HTML
+            txtMain.innerHTML = 'tu gagnes ' + nbPari + ' billes'; //A changer en inner HTML
             return nbPari;
         }
         else if (choixUser == "impair" && isJoueur || choixUser == "pair" && !isJoueur) {
-            console.log('tu perds ' + nbPari + ' billes'); //A changer en inner HTML
+            txtMain.innerHTML = 'tu gagnes ' + nbPari + ' billes'; //A changer en inner HTML
             return nbPari * (-1);
         }
     }
     else if (nbBilles % 2 != 0) {
         if (choixUser == "impair" && isJoueur || choixUser == "pair" && !isJoueur) {
-            console.log('tu gagnes ' + nbPari + ' billes'); //A changer en inner HTML
+            txtMain.innerHTML = 'tu gagnes ' + nbPari + ' billes'; //A changer en inner HTML
             return nbPari;
         }
         else if (choixUser == "pair" && isJoueur || choixUser == "impair" && !isJoueur) {
-            console.log('tu perds ' + nbPari + ' billes'); //A changer en inner HTML
+            txtMain.innerHTML = 'tu gagnes ' + nbPari + ' billes'; //A changer en inner HTML
             return nbPari * (-1);
         }
     }
