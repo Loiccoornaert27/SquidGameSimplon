@@ -172,7 +172,18 @@ function closeRules() {
         }
     }
     //Boucle de jeu
-    while (numMarblesPlayer || numMarblesAI > 0) {
-        (playerTurn == true ? false : true);
+    // while(numMarblesPlayer||numMarblesAI>0){
+    //     (playerTurn==true?false:true)
+    //    }
+    //Affichage des règles du jeu
+    //btnRules : bouton qui affiche les règles
+    //popRules : pop up des règles
+    function showRules(popRules) {
+        popRules.setAttribute("style", "display: normal");
+        // popRules.style.display="normal";
+        console.log("les regles vont s'afficher");
     }
+    btnRules.addEventListener("click", () => { showRules(popRules); });
+    // btnRules.addEventListener("click",() => {popRules.setAttribute("style", "display: true")});
 }
+// btnRules.addEventListener("click",() => {popRules.setAttribute("style", "display: true")});
