@@ -3,6 +3,8 @@ let choixUser; //Va stocker si le choix est pair ou impaire
 const btnStart = document.getElementById("btnStart");
 const btnPair = document.getElementById("btnPair");
 const btnImpair = document.getElementById("btnImpair");
+const btnRules = document.getElementsByClassName("rules-button")[0];
+const popRules = document.getElementsByClassName("screen-rules")[0];
 let playerTurn = true;
 //Initialisation du stock de billes
 let numMarblesPlayer = 10;
@@ -55,31 +57,19 @@ function checkResult(nbBilles, choixUser, nbPari, isJoueur) {
         }
     }
 }
-<<<<<<< Updated upstream
 //Fonction qui désigne aléatoirement qui va jouer en premier,
 //playerTurn : tour du joueur (true) ou tour IA (false)
-=======
-//Fonction qui désigne aléatoirement qui va jouer en premier, introduit la variable playerTurn qui définit si c'est le tour du joueur ou non
-let playerTurn = true;
->>>>>>> Stashed changes
 function whoPlayFirst(playerTurn) {
     playerTurn = Math.random() < 0.5;
     return playerTurn;
 }
 playerTurn = whoPlayFirst(playerTurn);
 console.log("playerTurn is " + playerTurn);
-<<<<<<< Updated upstream
 //Pari de l'IA
 //Génère un nombre de billes pariées par l'IA
 //numMarblesAI : nombres de billes de l'IA
 //numMarblesPlayer : nombres de billes du joueur
 //marblesBetIA : pari de l'IA
-=======
-//Initialisation du stock de billes
-let numMarblesPlayer = 10;
-let numMarblesAI = 10;
-//Pari de l'IA
->>>>>>> Stashed changes
 let marblesBetAI;
 function initBetAI(numMarblesAI, numMarblesPlayer) {
     let min = Math.ceil(1);
@@ -96,15 +86,7 @@ function initBetAI(numMarblesAI, numMarblesPlayer) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
-<<<<<<< Updated upstream
 //Fonction d'addition/soustraction des billes au stock en fonction de *Fonction qui décide qui gagne et qui perd *
-=======
-//Boucle de jeu
-while (numMarblesPlayer || numMarblesAI > 0) {
-    (playerTurn == true ? false : true);
-}
-//Fonction d'ajout ou de retrait  
->>>>>>> Stashed changes
 function addRemoveMarbles(numMarblesAI, numMarblesPlayer, nbPari) {
     if (playerTurn == true) {
         numMarblesPlayer += nbPari;
@@ -114,11 +96,18 @@ function addRemoveMarbles(numMarblesAI, numMarblesPlayer, nbPari) {
         numMarblesAI += nbPari;
         numMarblesPlayer -= nbPari;
     }
-<<<<<<< Updated upstream
 }
 //Boucle de jeu
-while (numMarblesPlayer || numMarblesAI > 0) {
-    (playerTurn == true ? false : true);
-=======
->>>>>>> Stashed changes
+// while(numMarblesPlayer||numMarblesAI>0){
+//     (playerTurn==true?false:true)
+//    }
+//Affichage des règles du jeu
+//btnRules : bouton qui affiche les règles
+//popRules : pop up des règles
+function showRules(popRules) {
+    popRules.setAttribute("style", "display: normal");
+    // popRules.style.display="normal";
+    console.log("les regles vont s'afficher");
 }
+btnRules.addEventListener("click", () => { showRules(popRules); });
+// btnRules.addEventListener("click",() => {popRules.setAttribute("style", "display: true")});

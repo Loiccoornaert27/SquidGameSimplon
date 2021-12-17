@@ -32,6 +32,21 @@
 }
 
 /* -----------------Rules----------------- */
+.rules-button{
+    width: 10vh;
+    height: 5vh;
+    border: 2px solid black;
+    border-radius: 25%;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .screen-rules {
     display: none;
     width: 100vw;
