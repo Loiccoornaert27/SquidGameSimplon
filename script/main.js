@@ -88,7 +88,6 @@ function initBetIA(numMarblesIA, numMarblesPlayer) {
     let min = 1;
     //20% de chance de parier plus que le stock de billes du joueur
     let chanceToBetMore = Math.random();
-    console.log(chanceToBetMore);
     let max;
     if (chanceToBetMore < 0.7) {
         max = Math.floor(numMarblesIA + 1 && numMarblesPlayer + 1);
