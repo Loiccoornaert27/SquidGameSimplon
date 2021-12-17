@@ -1,40 +1,49 @@
 let choixUser : String; //Va stocker si le choix est pair ou impaire
-const btnStart = document.getElementsByClassName("start-button")[0];
-const btnPair = document.getElementById("pair-bloc choice")[0]; 
-const btnImpair = document.getElementById("impair-bloc choice")[0] as HTMLDivElement;
-const closeWindowRules = document.getElementsByClassName("close-rules")[0];
-let txtMain = document.getElementsByName("display-text")[0];
+const btnStart = document.querySelector(".start-button") as HTMLButtonElement;
+const screenStart = document.querySelector(".screen-start") as HTMLButtonElement;
+const screenRules = document.querySelector(".screen-rules") as HTMLDivElement;
+const screenGame = document.querySelector(".screen-game") as HTMLDivElement;
+const btnPair = document.querySelector(".pair-bloc-choice") as HTMLButtonElement; 
+const btnImpair = document.querySelector(".impair-bloc-choice") as HTMLButtonElement;
+const closeWindowRules = document.querySelector(".close-rules") as HTMLButtonElement;
+const player_hand = document.querySelector(".playerHand-close") as HTMLDivElement;
+const ai_hand = document.querySelector(".iaHand-close") as HTMLDivElement;
+let txtMain = document.querySelector(".display-text") as HTMLDivElement;
+
 
 function start(){
-    const screenStart = document.getElementsByClassName("screen-start")[0];
-    const screenRules = document.getElementsByClassName("screen-rules")[0];
-
     screenStart.setAttribute("style", "display: none");
     screenRules.setAttribute("style", "display: block");
 }
 
-btnStart?.addEventListener("click",start);
+btnStart.addEventListener("click",start);
 closeWindowRules.addEventListener("click",closeRules);
 
 
 function closeRules(){
-    const screenRules = document.getElementsByClassName("screen-rules")[0];
-    const screenGame = document.getElementsByClassName("screen-game")[0];
-
     screenRules.setAttribute("style", "display: none");
     screenGame.setAttribute("style", "display: block");
 }
-btnStart?.addEventListener("click",start);
+btnStart.addEventListener("click",start);
 
 function pairClick(){
+    
     btnPair.setAttribute("style", "display: none");
     btnImpair.setAttribute("style", "display: none");
-    return "pair";
+    player_hand.setAttribute("style","display : flex");
+    ai_hand.setAttribute("style","display : flex");
+    
+    choixUser="pair";
 }
 btnPair.addEventListener("click",pairClick);
 
 function impairClick(){
-    return"impair";
+    
+    btnPair.setAttribute("style", "display: none");
+    btnImpair.setAttribute("style", "display: none");
+    player_hand.setAttribute("style","display : flex");
+    ai_hand.setAttribute("style","display : flex");
+    choixUser="impair";
 }
 
 btnImpair.addEventListener("click",impairClick);
@@ -104,4 +113,4 @@ function initBetIA(numMarblesIA:number,numMarblesPlayer: number){
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-marblesBetIA = initBetIA(numMarblesIA,numMarblesPlayer);
+
