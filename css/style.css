@@ -89,7 +89,26 @@
     justify-content: center;
     align-items: center;
     width: 80%;
-    /*display: none;*/ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    /* display: none; */
+}
+
+.validationButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50vw;
+    display: none;
+}
+
+.yes, .no{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1vh;
 }
 
 .marble {
