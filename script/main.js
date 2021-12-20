@@ -18,8 +18,8 @@ const closeWindowRules = document.querySelector(".close-rules");
 const player_hand = document.querySelector(".playerHand-close");
 const ai_hand = document.querySelector(".iaHand-close");
 let txtMain = document.querySelector(".display-text");
-const btnRules = document.getElementsByClassName("rules-button")[0];
-const btnRestart = document.getElementsByClassName("restart-button")[0];
+const btnRules = document.querySelector(".rules-button");
+const btnRestart = document.querySelector(".restart-button");
 let noBtn = document.querySelector('.no');
 let yesBtn = document.querySelector('.yes');
 let playerTurn = true; // tour du joueur vrai/faux
@@ -319,7 +319,7 @@ function nextLoop() {
         else {
             numMarblesPlayer <= 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
             console.log("C'est fini");
-            btnRestart.setAttribute("style", "display: flex");
+            btnRestart.style.display = "flex";
         }
     });
 }
