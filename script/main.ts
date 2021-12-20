@@ -9,6 +9,7 @@ const player_hand = document.querySelector(".playerHand-close") as HTMLDivElemen
 const ai_hand = document.querySelector(".iaHand-close") as HTMLDivElement;
 let txtMain = document.querySelector(".display-text") as HTMLDivElement;
 const btnRules = document.getElementsByClassName("rules-button")[0] as HTMLElement;
+const btnRestart = document.getElementsByClassName("restart-button")[0] as HTMLElement;
 let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
 
@@ -30,6 +31,7 @@ btnPair.addEventListener("click", pairClick);
 btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
+btnRestart.addEventListener("click", beginGame);
 
 
 
@@ -274,7 +276,8 @@ function initBetAI(numMarblesAI: number, numMarblesPlayer: number) {
 }
 
 async function beginGame() {
-
+    btnRestart.setAttribute("style", "display: none")
+    
     displayScreenGame();
 
     playerTurn ? updateTextMiddle("Vous commencez !") : updateTextMiddle("L'ordinateur commence !")  ;
@@ -321,6 +324,7 @@ async function nextLoop() {
     else{
         numMarblesPlayer === 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
         console.log("C'est fini")
+        btnRestart.setAttribute("style", "display: flex");
     }
 }
 

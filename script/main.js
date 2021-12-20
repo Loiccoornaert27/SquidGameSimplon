@@ -19,6 +19,7 @@ const player_hand = document.querySelector(".playerHand-close");
 const ai_hand = document.querySelector(".iaHand-close");
 let txtMain = document.querySelector(".display-text");
 const btnRules = document.getElementsByClassName("rules-button")[0];
+const btnRestart = document.getElementsByClassName("restart-button")[0];
 let noBtn = document.querySelector('.no');
 let yesBtn = document.querySelector('.yes');
 let playerTurn = true; // tour du joueur vrai/faux
@@ -36,6 +37,7 @@ btnPair.addEventListener("click", pairClick);
 btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
+btnRestart.addEventListener("click", beginGame);
 // Cache l'écran Start et Affiche l'écran des règles
 function start() {
     screenStart.setAttribute("style", "display: none");
@@ -242,6 +244,7 @@ function initBetAI(numMarblesAI, numMarblesPlayer) {
 }
 function beginGame() {
     return __awaiter(this, void 0, void 0, function* () {
+        btnRestart.setAttribute("style", "display: none");
         displayScreenGame();
         playerTurn ? updateTextMiddle("Vous commencez !") : updateTextMiddle("L'ordinateur commence !");
         console.log("playerTurn is " + playerTurn);
@@ -277,6 +280,7 @@ function nextLoop() {
         else {
             numMarblesPlayer === 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
             console.log("C'est fini");
+            btnRestart.setAttribute("style", "display: flex");
         }
     });
 }
