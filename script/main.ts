@@ -189,10 +189,8 @@ async function revealHands(){
     displayText();
 }
 
-
-
-
 // ----------------------------------------------------------------------------------
+
 
 /*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
 function aiChoose() {
@@ -271,3 +269,4 @@ function addRemoveMarbles(numMarblesAI:number,numMarblesPlayer: number,nbPari:nu
         numMarblesPlayer-=nbPari;
     }
 }
+
