@@ -115,6 +115,24 @@ function generateMarblesPlayerImage() {
         playerMarbles.appendChild(img); // Ajoute l'image créer dans la div
     }
 }
+function generateMarblesInHands() {
+    const playerMarbleshand = document.querySelector(".marblesInPlayerHand");
+    const iaMarbleshand = document.querySelector(".marblesInAIHand");
+    playerMarbleshand.innerHTML = ''; // Supprime tous les images
+    iaMarbleshand.innerHTML = ''; // Supprime tous les images
+    for (let i = 1; i <= marblesBetPlayer; i++) {
+        // Création de l'image
+        let img = document.createElement('img');
+        img.src = "./image/bille.png";
+        playerMarbleshand.appendChild(img); // Ajoute l'image créer dans la div
+    }
+    for (let i = 1; i <= marblesBetAI; i++) {
+        // Création de l'image
+        let img = document.createElement('img');
+        img.src = "./image/bille.png";
+        iaMarbleshand.appendChild(img); // Ajoute l'image créer dans la div
+    }
+}
 //Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble) {
     marblesBetPlayer = numberOfMarble;
@@ -170,6 +188,7 @@ function revealHands() {
     return __awaiter(this, void 0, void 0, function* () {
         displayText(false);
         displayCloseHands();
+        generateMarblesInHands();
         yield sleep(2000);
         displayCloseHands(false);
         displayOpenHands();
