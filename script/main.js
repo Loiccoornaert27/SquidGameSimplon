@@ -37,7 +37,7 @@ btnPair.addEventListener("click", pairClick);
 btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
-btnRestart.addEventListener("click", beginGame);
+btnRestart.addEventListener("click", restart);
 // Cache l'écran Start et Affiche l'écran des règles
 function start() {
     screenStart.setAttribute("style", "display: none");
@@ -244,7 +244,6 @@ function initBetAI(numMarblesAI, numMarblesPlayer) {
 }
 function beginGame() {
     return __awaiter(this, void 0, void 0, function* () {
-        btnRestart.setAttribute("style", "display: none");
         displayScreenGame();
         playerTurn ? updateTextMiddle("Vous commencez !") : updateTextMiddle("L'ordinateur commence !");
         console.log("playerTurn is " + playerTurn);
@@ -292,4 +291,11 @@ function game() {
     beginGame();
     console.log(`Bille joueur -> ${numMarblesPlayer}`);
     console.log(`Bille ia -> ${numMarblesAI}`);
+}
+//fct restart
+function restart() {
+    btnRestart.setAttribute("style", "display: none");
+    numMarblesAI = 10;
+    numMarblesPlayer = 10;
+    game();
 }
