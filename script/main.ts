@@ -9,6 +9,8 @@ const player_hand = document.querySelector(".playerHand-close") as HTMLDivElemen
 const ai_hand = document.querySelector(".iaHand-close") as HTMLDivElement;
 let txtMain = document.querySelector(".display-text") as HTMLDivElement;
 const btnRules  = document.getElementsByClassName("rules-button")[0] as HTMLElement;
+let noBtn = document.querySelector('.no') as Element;
+let yesBtn = document.querySelector('.yes') as Element;
 
 let playerTurn:boolean=true; // tour du joueur vrai/faux
 let choixUser : String; //Va stocker si le choix est pair ou impair
@@ -18,70 +20,112 @@ let numMarblesAI: number = 10;//Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI:number;// Nombre de billes parié par l'IA
 
+
+btnRules.addEventListener("click",() => {displayRules()});
+btnStart.addEventListener("click",start);
+closeWindowRules.addEventListener("click",() => {displayRules(false)});
+btnPair.addEventListener("click",pairClick);
+btnImpair.addEventListener("click",impairClick);
+noBtn.addEventListener("click", noButton);
+yesBtn.addEventListener("click", yesButton);
+
+
+
 // Cache l'écran Start et Affiche l'écran des règles
 function start() {
-    const screenStart = document.getElementsByClassName("screen-start")[0];
     screenStart.setAttribute("style", "display: none");
+    displayScreenGame();
 }
-btnStart.addEventListener("click",start);
 
-//Affichage des règles du jeu
-//btnRules : bouton qui affiche les règles
-//popRules : pop up des règles
-function showRules(screenRules:HTMLDivElement){
-    screenRules.setAttribute("style", "display: block");
-    console.log("les regles vont s'afficher");
+// ---------------------------------------------------------------------
+
+// Affiche/Enleve l'affichage des règles
+function displayRules(show = true){
+    show ? screenRules.setAttribute("style", "display: block") : screenRules.setAttribute("style", "display: none");
 }
-btnRules.addEventListener("click",() => {showRules(screenRules)});
 
-
-// Cache l'écran des règles et Affiche l'écran de jeu
-function closeRules() {
-    const screenRules = document.getElementsByClassName("screen-rules")[0];
-    const screenGame = document.getElementsByClassName("screen-game")[0];
-
-    generateMarblesPlayerImage();
-
-    screenRules.setAttribute("style", "display: none");
-    screenGame.setAttribute("style", "display: block");
+// Affiche/Enleve l'affichage des boutons Oui/Non pour la confirmation du choix de l'utilisateur
+function displayConfirmationButton(show = true){
+    let confirmationBtn = document.querySelector(".validationButton") as Element;
+   
+    if (show) {
+        confirmationBtn.setAttribute("style", "display: flex");
+        updateTextMiddle(`Voulez vous pariez ${marblesBetPlayer} ${marblesBetPlayer === 1 ? "bille" : "billes"} ? `);
+    }
+    else {
+        confirmationBtn.setAttribute("style", "display: none");
+    }
 }
-closeWindowRules.addEventListener("click",closeRules);
 
-//Fonction qui enregistre le pair
-function pairClick(){
-    
-    btnPair.setAttribute("style", "display: none");
-    btnImpair.setAttribute("style", "display: none");
-    player_hand.setAttribute("style","display : flex");
-    ai_hand.setAttribute("style","display : flex");
-    choixUser="pair";
-}
-btnPair.addEventListener("click",pairClick);
+// Affiche/Enleve l'affichage des billes du joueur
+function displayMarblesPlayer(show = true){
+    let playerMables = document.querySelector('.player-marbles') as Element;
 
-//Fonction qui enregistre le pair
-function impairClick(){
-    
-    btnPair.setAttribute("style", "display: none");
-    btnImpair.setAttribute("style", "display: none");
-    player_hand.setAttribute("style","display : flex");
-    ai_hand.setAttribute("style","display : flex");
-    choixUser="impair";
+    show ? (playerMables.setAttribute("style", "display: flex")) :  (playerMables.setAttribute("style", "display: none"));
 }
-btnImpair.addEventListener("click",impairClick);
+
+function displayPairImpaire(show = true){
+    let playerChoice = document.querySelector(".player-choice") as Element;
+    show ? (playerChoice.setAttribute("style", "display: flex")) :  (playerChoice.setAttribute("style", "display: none"));
+}
+
+// Affiche/Enleve l'affichage du ScreenGame
+function displayScreenGame(show = true) {
+    if (show){
+        generateMarblesPlayerImage();
+        screenGame.setAttribute("style", "display: block");
+    }
+    else {
+        screenGame.setAttribute("style", "display: none");
+    }
+}
+
+function displayCloseHands(show = true){
+    if (show){
+        player_hand.setAttribute("style","display : flex");
+        ai_hand.setAttribute("style","display : flex");
+    }
+    else {
+        player_hand.setAttribute("style","display : none");
+        ai_hand.setAttribute("style","display : none");
+    }
+}
+
+function displayOpenHands(show = true){
+    const player_hand_open = document.querySelector(".playerHand-open") as HTMLDivElement;
+    const ai_hand_open = document.querySelector(".iaHand-open") as HTMLDivElement;
+
+    if (show){
+        player_hand_open.setAttribute("style","display : flex");
+        ai_hand_open.setAttribute("style","display : flex");
+    }
+    else {
+        player_hand_open.setAttribute("style","display : none");
+        ai_hand_open.setAttribute("style","display : none");
+    }
+}
+
+function displayText(show = true){
+    show ? txtMain.setAttribute("style","display : flex") : txtMain.setAttribute("style","display : none");
+}
+
+// -----------------------------------------------------------------------
 
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
 function generateMarblesPlayerImage() {
     const playerMarbles = document.getElementsByClassName("player-marbles")[0];
+
+    playerMarbles.innerHTML = ''; // Supprime tous les images
+
     for (let i = 1; i <= numMarblesPlayer; i++) {
         // Création de l'image
         let img = document.createElement('img');
         img.src = "./image/bille.png";
         img.classList.add("marble");
 
-        img.addEventListener("click", () => {confirmationMarblesPLayer(i);});
+        img.addEventListener("click", () => {confirmationMarblesPLayer(i);}); 
 
-        playerMarbles.appendChild(img);
-        console.log("Nouvelle image généré !")
+        playerMarbles.appendChild(img); // Ajoute l'image créer dans la div
     }
 }
 
@@ -91,40 +135,20 @@ function confirmationMarblesPLayer(numberOfMarble : number){
     displayConfirmationButton();
 }
 
-// Fait apparaitre les bouttons oui/non
-function displayConfirmationButton(){
-    let confirmationBtn = document.querySelector(".validationButton") as Element;
-    confirmationBtn.setAttribute("style", "display: flex");
-
-    let noBtn = document.querySelector('.no') as Element;
-    noBtn.addEventListener("click", noButton);
-
-    let yesBtn = document.querySelector('.yes') as Element;
-    yesBtn.addEventListener("click", yesButton);
-
-    updateTextMiddle(`Voulez vous pariez ${marblesBetPlayer} ${marblesBetPlayer === 1 ? "bille" : "billes"} ? `);
-}
-
-// Fait disparaitre les bouttons oui/non
+// Réinitialise le nombre de bille parier par le joueur 
 function noButton(){
     marblesBetPlayer = 0;
 
-    let confirmationBtn = document.querySelector(".validationButton") as Element;
-    confirmationBtn.setAttribute("style", "display: none");
+    displayConfirmationButton(false);
 
     updateTextMiddle(`Choisissez le nombre de billes à parier`);
 }
 
 // Enleve les billes joueur et fait apparaitre les bouton pair/impair
 function yesButton(){
-    let confirmationBtn = document.querySelector(".validationButton") as Element;
-    let marblesPlayers = document.querySelector('.player-marbles') as Element; 
-
-    confirmationBtn.setAttribute("style", "display: none");
-    marblesPlayers.setAttribute("style", "display: none");
-
-    let playerChoice = document.querySelector('.player-choice') as Element;
-    playerChoice.setAttribute("style", "display: flex")
+    displayConfirmationButton(false);
+    displayMarblesPlayer(false);
+    displayPairImpaire();
 
     updateTextMiddle(`Choisissez pair ou impair`);
 }
@@ -134,6 +158,40 @@ function updateTextMiddle(str : string){
     let displayTxt = document.querySelector(".display-text p") as Element;
     displayTxt.innerHTML = str;
 }
+
+//Fonction qui enregistre le pair
+function pairClick(){
+    choixUser="pair";
+    displayPairImpaire(false);
+    revealHands()
+}
+
+//Fonction qui enregistre le pair
+function impairClick(){
+    choixUser="impair";
+    displayPairImpaire(false);
+    revealHands()
+}
+
+function sleep(ms : number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+async function revealHands(){
+    displayText(false);
+    displayCloseHands();
+
+    await sleep(2000);
+
+    displayCloseHands(false);
+    displayOpenHands();
+
+    updateTextMiddle("Texte a mettre pour le reveal ICI");
+    displayText();
+}
+
+// ----------------------------------------------------------------------------------
+
 
 /*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
 function aiChoose() {

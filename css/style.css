@@ -138,7 +138,6 @@
     bottom: 0px;
     left: 50%;
     transform: translate(-50%, -20%);
-    display: none;
 }
 
 .player-choice {
@@ -199,6 +198,20 @@
 
 .hands img {
     height: 100%;
+    width: auto;
+}
+
+.marblesInHand {
+    position: absolute;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 2.6vh 2.6vh 2.6vh 2.6vh ;
+    left: 43vw;
+
+}
+
+.marblesInHand img{
+    height: 2.6vh;
     width: auto;
 }
 
