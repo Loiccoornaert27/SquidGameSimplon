@@ -31,7 +31,7 @@ let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI; // Nombre de billes parié par l'IA
 let playerChoiceConfirmed = false;
 btnRules.addEventListener("click", () => { displayRules(); });
-btnStart.addEventListener("click", start);
+btnStart.addEventListener("click", game);
 closeWindowRules.addEventListener("click", () => { displayRules(false); });
 btnPair.addEventListener("click", pairClick);
 btnImpair.addEventListener("click", impairClick);
@@ -101,7 +101,8 @@ function displayOpenHands(show = true) {
     }
 }
 function displayText(show = true) {
-    show ? txtMain.setAttribute("style", "display : flex") : txtMain.setAttribute("style", "display : none");
+    let test = document.querySelector(".display-text");
+    show ? test.style.display = "flex" : test.style.display = "none";
 }
 // -----------------------------------------------------------------------
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
@@ -195,7 +196,7 @@ function revealHands() {
         displayCloseHands(false);
         displayOpenHands();
         displayText();
-        yield sleep(2000);
+        yield sleep(4000);
         displayOpenHands(false);
     });
 }
@@ -303,7 +304,7 @@ function nextLoop() {
             beginGame();
         }
         else {
-            numMarblesPlayer === 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
+            numMarblesPlayer <= 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
             console.log("C'est fini");
             btnRestart.setAttribute("style", "display: flex");
         }
