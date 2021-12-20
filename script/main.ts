@@ -369,3 +369,5 @@ function game() {
     console.log(`Bille joueur -> ${numMarblesPlayer}`);
     console.log(`Bille ia -> ${numMarblesAI}`);
 }
+
+
