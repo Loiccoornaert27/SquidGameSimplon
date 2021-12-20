@@ -38,11 +38,6 @@ btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
 btnRestart.addEventListener("click", restart);
-// Cache l'écran Start et Affiche l'écran des règles
-function start() {
-    screenStart.setAttribute("style", "display: none");
-    game();
-}
 // ---------------------------------------------------------------------
 // Affiche/Enleve l'affichage des règles
 function displayRules(show = true) {
@@ -136,14 +131,31 @@ function generateMarblesInHands() {
         iaMarbleshand.appendChild(img); // Ajoute l'image créer dans la div
     }
 }
+function greyFilter(show = true) {
+    const playerMarbles = Array.from(document.querySelectorAll('.marble'));
+    let beginIndex = marblesBetPlayer;
+    if (show) {
+        for (let i = beginIndex; i < playerMarbles.length; i++) {
+            playerMarbles[i].setAttribute("style", "filter: grayscale(100%)");
+        }
+    }
+    else {
+        for (let i = 0; i < playerMarbles.length; i++) {
+            playerMarbles[i].removeAttribute("style");
+        }
+    }
+}
 //Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble) {
+    greyFilter(false);
     marblesBetPlayer = numberOfMarble;
+    greyFilter();
     displayConfirmationButton();
 }
 // Réinitialise le nombre de bille parier par le joueur 
 function noButton() {
     marblesBetPlayer = 0;
+    greyFilter(false);
     displayConfirmationButton(false);
     updateTextMiddle(`Choisissez le nombre de billes à parier`);
 }
@@ -152,6 +164,7 @@ function yesButton() {
     return __awaiter(this, void 0, void 0, function* () {
         displayConfirmationButton(false);
         displayMarblesPlayer(false);
+        greyFilter(false);
         if (playerTurn) {
             updateTextMiddle(`Choisissez pair ou impair`);
             displayPairImpaire();

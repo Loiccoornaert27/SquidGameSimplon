@@ -13,6 +13,7 @@ const btnRestart = document.getElementsByClassName("restart-button")[0] as HTMLE
 let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
 
+
 let playerTurn: boolean = true; // tour du joueur vrai/faux
 let choixUser: String; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -32,7 +33,6 @@ btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
 btnRestart.addEventListener("click", restart);
-
 
 
 // ---------------------------------------------------------------------
@@ -153,15 +153,37 @@ function generateMarblesInHands() {
     }
 }
 
+function greyFilter(show = true){
+    const playerMarbles = Array.from(document.querySelectorAll('.marble'));
+
+    let beginIndex = marblesBetPlayer;
+    if (show){
+        for(let i = beginIndex; i < playerMarbles.length; i++){
+            playerMarbles[i].setAttribute("style", "filter: grayscale(100%)")
+        }
+    }
+    else {
+        for(let i = 0; i < playerMarbles.length; i++){
+            playerMarbles[i].removeAttribute("style")
+        }
+    }
+  
+    
+}
+
 //Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble: number) {
+    greyFilter(false);
     marblesBetPlayer = numberOfMarble;
+    greyFilter();
     displayConfirmationButton();
 }
 
 // Réinitialise le nombre de bille parier par le joueur 
 function noButton() {
     marblesBetPlayer = 0;
+    
+    greyFilter(false);
 
     displayConfirmationButton(false);
 
@@ -172,13 +194,14 @@ function noButton() {
 async function yesButton() {
     displayConfirmationButton(false);
     displayMarblesPlayer(false);
+    greyFilter(false);
+
 
     if(playerTurn){
         updateTextMiddle(`Choisissez pair ou impair`);
         displayPairImpaire();
     }
     else{
-        
         nextLoop();
     }
 }
