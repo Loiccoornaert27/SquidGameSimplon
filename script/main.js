@@ -18,7 +18,8 @@ const closeWindowRules = document.querySelector(".close-rules");
 const player_hand = document.querySelector(".playerHand-close");
 const ai_hand = document.querySelector(".iaHand-close");
 let txtMain = document.querySelector(".display-text");
-const btnRules = document.getElementsByClassName("rules-button")[0];
+const btnRules = document.querySelector(".rules-button");
+const btnRestart = document.querySelector(".restart-button");
 let noBtn = document.querySelector('.no');
 let yesBtn = document.querySelector('.yes');
 let playerTurn = true; // tour du joueur vrai/faux
@@ -30,17 +31,13 @@ let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI; // Nombre de billes parié par l'IA
 let playerChoiceConfirmed = false;
 btnRules.addEventListener("click", () => { displayRules(); });
-btnStart.addEventListener("click", start);
+btnStart.addEventListener("click", game);
 closeWindowRules.addEventListener("click", () => { displayRules(false); });
 btnPair.addEventListener("click", pairClick);
 btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
-// Cache l'écran Start et Affiche l'écran des règles
-function start() {
-    screenStart.setAttribute("style", "display: none");
-    game();
-}
+btnRestart.addEventListener("click", restart);
 // ---------------------------------------------------------------------
 // Affiche/Enleve l'affichage des règles
 function displayRules(show = true) {
@@ -99,7 +96,8 @@ function displayOpenHands(show = true) {
     }
 }
 function displayText(show = true) {
-    show ? txtMain.setAttribute("style", "display : flex") : txtMain.setAttribute("style", "display : none");
+    let test = document.querySelector(".display-text");
+    show ? test.style.display = "flex" : test.style.display = "none";
 }
 // -----------------------------------------------------------------------
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
@@ -133,14 +131,31 @@ function generateMarblesInHands() {
         iaMarbleshand.appendChild(img); // Ajoute l'image créer dans la div
     }
 }
+function greyFilter(show = true) {
+    const playerMarbles = Array.from(document.querySelectorAll('.marble'));
+    let beginIndex = marblesBetPlayer;
+    if (show) {
+        for (let i = beginIndex; i < playerMarbles.length; i++) {
+            playerMarbles[i].setAttribute("style", "filter: grayscale(100%)");
+        }
+    }
+    else {
+        for (let i = 0; i < playerMarbles.length; i++) {
+            playerMarbles[i].removeAttribute("style");
+        }
+    }
+}
 //Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble) {
+    greyFilter(false);
     marblesBetPlayer = numberOfMarble;
+    greyFilter();
     displayConfirmationButton();
 }
 // Réinitialise le nombre de bille parier par le joueur 
 function noButton() {
     marblesBetPlayer = 0;
+    greyFilter(false);
     displayConfirmationButton(false);
     updateTextMiddle(`Choisissez le nombre de billes à parier`);
 }
@@ -149,6 +164,7 @@ function yesButton() {
     return __awaiter(this, void 0, void 0, function* () {
         displayConfirmationButton(false);
         displayMarblesPlayer(false);
+        greyFilter(false);
         if (playerTurn) {
             updateTextMiddle(`Choisissez pair ou impair`);
             displayPairImpaire();
@@ -193,7 +209,7 @@ function revealHands() {
         displayCloseHands(false);
         displayOpenHands();
         displayText();
-        yield sleep(2000);
+        yield sleep(4000);
         displayOpenHands(false);
     });
 }
@@ -301,8 +317,9 @@ function nextLoop() {
             beginGame();
         }
         else {
-            numMarblesPlayer === 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
+            numMarblesPlayer <= 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
             console.log("C'est fini");
+            btnRestart.style.display = "flex";
         }
     });
 }
@@ -314,4 +331,11 @@ function game() {
     beginGame();
     console.log(`Bille joueur -> ${numMarblesPlayer}`);
     console.log(`Bille ia -> ${numMarblesAI}`);
+}
+//fct restart
+function restart() {
+    btnRestart.setAttribute("style", "display: none");
+    numMarblesAI = 10;
+    numMarblesPlayer = 10;
+    game();
 }
