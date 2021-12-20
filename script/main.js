@@ -30,17 +30,12 @@ let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI; // Nombre de billes parié par l'IA
 let playerChoiceConfirmed = false;
 btnRules.addEventListener("click", () => { displayRules(); });
-btnStart.addEventListener("click", start);
+btnStart.addEventListener("click", game);
 closeWindowRules.addEventListener("click", () => { displayRules(false); });
 btnPair.addEventListener("click", pairClick);
 btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
-// Cache l'écran Start et Affiche l'écran des règles
-function start() {
-    screenStart.setAttribute("style", "display: none");
-    game();
-}
 // ---------------------------------------------------------------------
 // Affiche/Enleve l'affichage des règles
 function displayRules(show = true) {
