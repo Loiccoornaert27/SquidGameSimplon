@@ -2,30 +2,32 @@ const btnStart = document.querySelector(".start-button") as HTMLButtonElement;
 const screenStart = document.querySelector(".screen-start") as HTMLButtonElement;
 const screenRules = document.querySelector(".screen-rules") as HTMLDivElement;
 const screenGame = document.querySelector(".screen-game") as HTMLDivElement;
-const btnPair = document.querySelector(".pair-bloc-choice") as HTMLButtonElement; 
+const btnPair = document.querySelector(".pair-bloc-choice") as HTMLButtonElement;
 const btnImpair = document.querySelector(".impair-bloc-choice") as HTMLButtonElement;
 const closeWindowRules = document.querySelector(".close-rules") as HTMLButtonElement;
 const player_hand = document.querySelector(".playerHand-close") as HTMLDivElement;
 const ai_hand = document.querySelector(".iaHand-close") as HTMLDivElement;
 let txtMain = document.querySelector(".display-text") as HTMLDivElement;
-const btnRules  = document.getElementsByClassName("rules-button")[0] as HTMLElement;
+const btnRules = document.getElementsByClassName("rules-button")[0] as HTMLElement;
 let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
 
-let playerTurn:boolean=true; // tour du joueur vrai/faux
-let choixUser : String; //Va stocker si le choix est pair ou impair
+let playerTurn: boolean = true; // tour du joueur vrai/faux
+let choixUser: String; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
 let numMarblesPlayer: number = 10;//Initialisation du stock de billes joueur
 let numMarblesAI: number = 10;//Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
-let marblesBetAI:number;// Nombre de billes parié par l'IA
+let marblesBetAI: number;// Nombre de billes parié par l'IA
+
+let playerChoiceConfirmed = false;
 
 
-btnRules.addEventListener("click",() => {displayRules()});
-btnStart.addEventListener("click",start);
-closeWindowRules.addEventListener("click",() => {displayRules(false)});
-btnPair.addEventListener("click",pairClick);
-btnImpair.addEventListener("click",impairClick);
+btnRules.addEventListener("click", () => { displayRules() });
+btnStart.addEventListener("click", start);
+closeWindowRules.addEventListener("click", () => { displayRules(false) });
+btnPair.addEventListener("click", pairClick);
+btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
 
@@ -34,20 +36,26 @@ yesBtn.addEventListener("click", yesButton);
 // Cache l'écran Start et Affiche l'écran des règles
 function start() {
     screenStart.setAttribute("style", "display: none");
-    displayScreenGame();
+    game()
+    displayWhoPlayFirst();
+
+}
+
+function displayWhoPlayFirst() {
+    !playerTurn ? updateTextMiddle("Vous commencez !") : updateTextMiddle("L'ordinateur commence !");
 }
 
 // ---------------------------------------------------------------------
 
 // Affiche/Enleve l'affichage des règles
-function displayRules(show = true){
+function displayRules(show = true) {
     show ? screenRules.setAttribute("style", "display: block") : screenRules.setAttribute("style", "display: none");
 }
 
 // Affiche/Enleve l'affichage des boutons Oui/Non pour la confirmation du choix de l'utilisateur
-function displayConfirmationButton(show = true){
+function displayConfirmationButton(show = true) {
     let confirmationBtn = document.querySelector(".validationButton") as Element;
-   
+
     if (show) {
         confirmationBtn.setAttribute("style", "display: flex");
         updateTextMiddle(`Voulez vous pariez ${marblesBetPlayer} ${marblesBetPlayer === 1 ? "bille" : "billes"} ? `);
@@ -58,20 +66,20 @@ function displayConfirmationButton(show = true){
 }
 
 // Affiche/Enleve l'affichage des billes du joueur
-function displayMarblesPlayer(show = true){
+function displayMarblesPlayer(show = true) {
     let playerMables = document.querySelector('.player-marbles') as Element;
 
-    show ? (playerMables.setAttribute("style", "display: flex")) :  (playerMables.setAttribute("style", "display: none"));
+    show ? (playerMables.setAttribute("style", "display: flex")) : (playerMables.setAttribute("style", "display: none"));
 }
 
-function displayPairImpaire(show = true){
+function displayPairImpaire(show = true) {
     let playerChoice = document.querySelector(".player-choice") as Element;
-    show ? (playerChoice.setAttribute("style", "display: flex")) :  (playerChoice.setAttribute("style", "display: none"));
+    show ? (playerChoice.setAttribute("style", "display: flex")) : (playerChoice.setAttribute("style", "display: none"));
 }
 
 // Affiche/Enleve l'affichage du ScreenGame
 function displayScreenGame(show = true) {
-    if (show){
+    if (show) {
         generateMarblesPlayerImage();
         screenGame.setAttribute("style", "display: block");
     }
@@ -80,33 +88,33 @@ function displayScreenGame(show = true) {
     }
 }
 
-function displayCloseHands(show = true){
-    if (show){
-        player_hand.setAttribute("style","display : flex");
-        ai_hand.setAttribute("style","display : flex");
+function displayCloseHands(show = true) {
+    if (show) {
+        player_hand.setAttribute("style", "display : flex");
+        ai_hand.setAttribute("style", "display : flex");
     }
     else {
-        player_hand.setAttribute("style","display : none");
-        ai_hand.setAttribute("style","display : none");
+        player_hand.setAttribute("style", "display : none");
+        ai_hand.setAttribute("style", "display : none");
     }
 }
 
-function displayOpenHands(show = true){
+function displayOpenHands(show = true) {
     const player_hand_open = document.querySelector(".playerHand-open") as HTMLDivElement;
     const ai_hand_open = document.querySelector(".iaHand-open") as HTMLDivElement;
 
-    if (show){
-        player_hand_open.setAttribute("style","display : flex");
-        ai_hand_open.setAttribute("style","display : flex");
+    if (show) {
+        player_hand_open.setAttribute("style", "display : flex");
+        ai_hand_open.setAttribute("style", "display : flex");
     }
     else {
-        player_hand_open.setAttribute("style","display : none");
-        ai_hand_open.setAttribute("style","display : none");
+        player_hand_open.setAttribute("style", "display : none");
+        ai_hand_open.setAttribute("style", "display : none");
     }
 }
 
-function displayText(show = true){
-    show ? txtMain.setAttribute("style","display : flex") : txtMain.setAttribute("style","display : none");
+function displayText(show = true) {
+    show ? txtMain.setAttribute("style", "display : flex") : txtMain.setAttribute("style", "display : none");
 }
 
 // -----------------------------------------------------------------------
@@ -123,20 +131,20 @@ function generateMarblesPlayerImage() {
         img.src = "./image/bille.png";
         img.classList.add("marble");
 
-        img.addEventListener("click", () => {confirmationMarblesPLayer(i);}); 
+        img.addEventListener("click", () => { confirmationMarblesPLayer(i); });
 
         playerMarbles.appendChild(img); // Ajoute l'image créer dans la div
     }
 }
 
 //Confirmation du nb de billes
-function confirmationMarblesPLayer(numberOfMarble : number){
+function confirmationMarblesPLayer(numberOfMarble: number) {
     marblesBetPlayer = numberOfMarble;
     displayConfirmationButton();
 }
 
 // Réinitialise le nombre de bille parier par le joueur 
-function noButton(){
+function noButton() {
     marblesBetPlayer = 0;
 
     displayConfirmationButton(false);
@@ -145,7 +153,7 @@ function noButton(){
 }
 
 // Enleve les billes joueur et fait apparaitre les bouton pair/impair
-function yesButton(){
+function yesButton() {
     displayConfirmationButton(false);
     displayMarblesPlayer(false);
     displayPairImpaire();
@@ -154,30 +162,34 @@ function yesButton(){
 }
 
 // Change le texte du milieu
-function updateTextMiddle(str : string){
+function updateTextMiddle(str: string) {
+    console.log("tamere !");
+
     let displayTxt = document.querySelector(".display-text p") as Element;
     displayTxt.innerHTML = str;
 }
 
 //Fonction qui enregistre le pair
-function pairClick(){
-    choixUser="pair";
+function pairClick() {
+    choixUser = "pair";
+    playerChoiceConfirmed = true;
     displayPairImpaire(false);
-    revealHands()
+    revealHands();
 }
 
 //Fonction qui enregistre le pair
-function impairClick(){
-    choixUser="impair";
+function impairClick() {
+    choixUser = "impair";
+    playerChoiceConfirmed = true;
     displayPairImpaire(false);
     revealHands()
 }
 
-function sleep(ms : number) {
+function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}
 
-async function revealHands(){
+async function revealHands() {
     displayText(false);
     displayCloseHands();
 
@@ -209,33 +221,33 @@ function aiChoose() {
 //choixUser : pair ou impair
 //nbPari : le nombre de billes pariées
 //isJoueur : false c'est l'IA, true c'est le joueur
-function checkResult(nbBilles : number,choixUser: String,nbPari:number, isJoueur:Boolean ){
-    if(nbBilles % 2 == 0){
-        if(choixUser=="pair" && isJoueur || choixUser=="impair" && !isJoueur){
-            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
+function checkResult(nbBilles: number, choixUser: String, nbPari: number, isJoueur: Boolean) {
+    if (nbBilles % 2 == 0) {
+        if (choixUser == "pair" && isJoueur || choixUser == "impair" && !isJoueur) {
+            updateTextMiddle(`tu gagnes ${nbPari} billes`);  //A changer en inner HTML
             return nbPari;
         }
-        else{
-            txtMain.innerHTML='tu perds '+nbPari +' billes';  //A changer en inner HTML
-            return nbPari*(-1);
+        else {
+            updateTextMiddle(`tu perds ${nbPari} billes`);  //A changer en inner HTML
+            return nbPari * (-1);
         }
     }
-    else{
-        if(choixUser=="impair" && isJoueur || choixUser=="pair" && !isJoueur){
-            txtMain.innerHTML='tu gagnes '+nbPari +' billes';  //A changer en inner HTML
+    else {
+        if (choixUser == "impair" && isJoueur || choixUser == "pair" && !isJoueur) {
+            updateTextMiddle(`tu gagnes ${nbPari} billes`);  //A changer en inner HTML
             return nbPari;
         }
-        else{
-            txtMain.innerHTML='tu perds '+nbPari +' billes';  //A changer en inner HTML
-            return nbPari*(-1);
+        else {
+            updateTextMiddle(`tu perds ${nbPari} billes`);  //A changer en inner HTML
+            return nbPari * (-1);
         }
     }
 }
 
 //Fonction qui désigne aléatoirement qui va jouer en premier,
 //playerTurn : tour du joueur (true) ou tour IA (false)
-function whoPlayFirst(){
-    playerTurn=Math.random()<0.5;
+function whoPlayFirst() {
+    playerTurn = Math.random() < 0.5;
     return playerTurn;
 }
 
@@ -245,53 +257,79 @@ function whoPlayFirst(){
 //numMarblesAI : nombres de billes de l'IA
 //numMarblesPlayer : nombres de billes du joueur
 //marblesBetIA : pari de l'IA
-function initBetAI(numMarblesAI:number,numMarblesPlayer: number){
+function initBetAI(numMarblesAI: number, numMarblesPlayer: number) {
     let min = Math.ceil(1);
     //20% de chance de parier plus que le stock de billes du joueur
-    let chanceToBetMore=Math.random();
-    let max:number;
-    if(chanceToBetMore<0.7){
-        max = Math.floor(numMarblesAI+1&&numMarblesPlayer+1);
-    }else{
-        max = Math.floor(numMarblesAI+1);
+    let chanceToBetMore = Math.random();
+    let max: number;
+    if (chanceToBetMore < 0.7) {
+        max = Math.floor(numMarblesAI + 1 && numMarblesPlayer + 1);
+    } else {
+        max = Math.floor(numMarblesAI + 1);
     }
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
 // Boucle de jeu
-function game(){
+function game() {
+    screenStart.setAttribute("style", "display: none");
 
-    playerTurn= whoPlayFirst();
-    while(true){
-        console.log("playerTurn is "+playerTurn);
-        marblesBetAI = initBetAI(numMarblesAI,numMarblesPlayer);
-        //inserer fct qui permet de determiner le pari du joueur en attendant prompt
-        marblesBetPlayer = Number(prompt("Quelle quantité de billes voulez vous parier"));
-        if(playerTurn){
-            //ajouter l'event pour choix joueur
-            choixUser = prompt("pair ou impair") as string;
-            
-             let winlose : number = checkResult(marblesBetAI,choixUser,marblesBetPlayer,playerTurn);
-            numMarblesPlayer += winlose;
-            numMarblesAI -= winlose;
+    playerTurn = whoPlayFirst();
 
-        }   else {
-            choixUser =aiChoose();
-            let winlose : number = checkResult(marblesBetPlayer,choixUser,marblesBetAI,playerTurn);
-            numMarblesPlayer += winlose;
-            numMarblesAI -= winlose;
+    displayWhoPlayFirst();
+
+    playerTurn ? updateTextMiddle("Quelle quantité de billes voulez vous parier") : updateTextMiddle("Choisissez le nombre de billes a faire deviner");
+
+    console.log("playerTurn is " + playerTurn);
+
+    marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
+
+    displayScreenGame();
+
+    playerTurn ? updateTextMiddle("Quelle quantité de billes voulez vous parier") : updateTextMiddle("Choisissez le nombre de billes a faire deviner")
+
+
+    while (true) {
+
+        ;
+
+        if (playerChoiceConfirmed) {
+
+            //inserer fct qui permet de determiner le pari du joueur en attendant prompt
+            // marblesBetPlayer = Number(prompt("Quelle quantité de billes voulez vous parier"));
+
+            if (playerTurn) {
+                //ajouter l'event pour choix joueur
+                // choixUser = prompt("pair ou impair") as string;
+
+                let winlose: number = checkResult(marblesBetAI, choixUser, marblesBetPlayer, playerTurn);
+                numMarblesPlayer += winlose;
+                numMarblesAI -= winlose;
+
+            } else {
+                choixUser = aiChoose();
+                let winlose: number = checkResult(marblesBetPlayer, choixUser, marblesBetAI, playerTurn);
+                numMarblesPlayer += winlose;
+                numMarblesAI -= winlose;
+            }
+
+            console.log("nombres de billes joueur : " + numMarblesPlayer);
+            console.log("nombres de billes IA : " + numMarblesAI);
+
+            playerTurn === true ? playerTurn = false : playerTurn = true;
         }
 
-        console.log("nombres de billes joueur : "+numMarblesPlayer);
-        console.log("nombres de billes IA : "+numMarblesAI);
 
-        playerTurn===true?playerTurn=false:playerTurn=true;
-    if(numMarblesPlayer>0 || numMarblesAI>0){
-        break;
+
+        if (numMarblesPlayer < 0 || numMarblesAI < 0) {
+            break;
+        }
     }
-    }
+
+    console.log(`Bille joueur -> ${numMarblesPlayer}`);
+    console.log(`Bille ia -> ${numMarblesAI}`);
     console.log("Céfini")
-    
+
 
 }
 
