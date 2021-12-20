@@ -11,12 +11,15 @@
     width: 100vw;
     height: 100vh;
     z-index: -1;
+    background-color: #0b100c;
 }
 
 .start-button {
     width: 15vh;
     height: 15vh;
     border: 2px solid black;
+    background-color: #f12e7c;
+    color: white;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -25,14 +28,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    box-shadow: 0 0 0 0 rgba(241, 46, 124, 0.7);
 }
 
-.start-button p {
+.pulseLogo {
     padding: 8vw;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(#5a99d4, .5);
+    animation: pulse 1.5s infinite;
+}
+
+
+.pulse-button:hover 
+{
+  -webkit-animation: none;-moz-animation: none;-ms-animation: none;animation: none;
+}
+
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-moz-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@-ms-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+@keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+
+.logoBlock {
+    width: 100vw;
+    height: auto;
+}
+
+.logoBlock img {
+    width: 100%;
 }
 
 /* -----------------Restart----------------- */
-.restart-button{
+.restart-button {
     display: none;
     width: 10vh;
     height: 5vh;
@@ -48,7 +81,7 @@
 
 
 /* -----------------Rules----------------- */
-.rules-button{
+.rules-button {
     width: 10vh;
     height: 5vh;
     border: 2px solid black;
@@ -84,7 +117,7 @@
     align-items: center;
     justify-content: space-around;
     background-color: aliceblue;
-    z-index : 1;
+    z-index: 1;
 }
 
 .rules-notification p {
@@ -136,7 +169,7 @@
     display: none;
 }
 
-.yes, .no{
+.yes, .no {
     border: 1px solid black;
     border-radius: 5px;
     padding: 1vh;
@@ -180,9 +213,10 @@
     border-radius: 6px;
     font-size: 1.5em;
 }
+
 /* -----------------Hands----------------- */
 
-.hands{
+.hands {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -190,7 +224,7 @@
     width: 100vw;
 }
 
-.iaHand, .playerHand{
+.iaHand, .playerHand {
     height: 35vh;
 }
 
@@ -222,12 +256,11 @@
     position: absolute;
     z-index: 1;
     display: grid;
-    grid-template-columns: 2.6vh 2.6vh 2.6vh 2.6vh ;
+    grid-template-columns: 2.6vh 2.6vh 2.6vh 2.6vh;
     left: 43vw;
 }
 
-.marblesInAIHand img, .marblesInPlayerHand img{
+.marblesInAIHand img, .marblesInPlayerHand img {
     height: 2.6vh;
     width: auto;
 }
-
