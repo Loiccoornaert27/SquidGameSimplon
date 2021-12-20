@@ -108,7 +108,8 @@ function displayOpenHands(show = true) {
 }
 
 function displayText(show = true) {
-    show ? txtMain.setAttribute("style", "display : flex") : txtMain.setAttribute("style", "display : none");
+    let test = document.querySelector(".display-text") as HTMLDivElement
+    show ? test.style.display  = "flex" : test.style.display = "none";
 }
 
 // -----------------------------------------------------------------------
@@ -188,7 +189,7 @@ async function yesButton() {
 
 // Change le texte du milieu
 function updateTextMiddle(str: string) {
-    let displayTxt = document.querySelector(".display-text p") as Element;
+    let displayTxt = document.querySelector(".display-text p") as HTMLParagraphElement;
     displayTxt.innerHTML = str;
 }
 
@@ -228,7 +229,7 @@ async function revealHands() {
 
     displayText();
 
-    await sleep(2000);
+    await sleep(4000);
     displayOpenHands(false);
 }
 
@@ -352,7 +353,7 @@ async function nextLoop() {
     }
 
     else{
-        numMarblesPlayer === 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
+        numMarblesPlayer <= 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
         console.log("C'est fini")
     }
 }

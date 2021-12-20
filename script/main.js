@@ -99,7 +99,8 @@ function displayOpenHands(show = true) {
     }
 }
 function displayText(show = true) {
-    show ? txtMain.setAttribute("style", "display : flex") : txtMain.setAttribute("style", "display : none");
+    let test = document.querySelector(".display-text");
+    show ? test.style.display = "flex" : test.style.display = "none";
 }
 // -----------------------------------------------------------------------
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
@@ -193,7 +194,7 @@ function revealHands() {
         displayCloseHands(false);
         displayOpenHands();
         displayText();
-        yield sleep(2000);
+        yield sleep(4000);
         displayOpenHands(false);
     });
 }
@@ -301,7 +302,7 @@ function nextLoop() {
             beginGame();
         }
         else {
-            numMarblesPlayer === 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
+            numMarblesPlayer <= 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
             console.log("C'est fini");
         }
     });
