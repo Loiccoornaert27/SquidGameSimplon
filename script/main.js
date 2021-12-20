@@ -178,6 +178,11 @@ function revealHands() {
         displayOpenHands(false);
     });
 }
+function revealAIChoice(choixIA) {
+    return __awaiter(this, void 0, void 0, function* () {
+        updateTextMiddle(`L'IA a choisi ${choixIA}`);
+    });
+}
 // ----------------------------------------------------------------------------------
 /*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
 function aiChoose() {
@@ -262,6 +267,8 @@ function nextLoop() {
         }
         else {
             choixUser = aiChoose();
+            revealAIChoice(choixUser);
+            yield sleep(2000);
             let winlose = checkResult(marblesBetPlayer, choixUser, marblesBetAI, playerTurn);
             numMarblesPlayer += winlose;
             numMarblesAI -= winlose;

@@ -205,6 +205,10 @@ async function revealHands() {
     displayOpenHands(false);
 }
 
+async function revealAIChoice(choixIA : String){
+    updateTextMiddle(`L'IA a choisi ${choixIA}`);
+}
+
 // ----------------------------------------------------------------------------------
 
 
@@ -301,6 +305,8 @@ async function nextLoop() {
         
     } else {
         choixUser = aiChoose();
+        revealAIChoice(choixUser); 
+        await sleep(2000);
         let winlose: number = checkResult(marblesBetPlayer, choixUser, marblesBetAI, playerTurn);
         numMarblesPlayer += winlose;
         numMarblesAI -= winlose;
