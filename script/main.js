@@ -22,6 +22,9 @@ const btnRules = document.querySelector(".rules-button");
 const btnRestart = document.querySelector(".restart-button");
 let noBtn = document.querySelector('.no');
 let yesBtn = document.querySelector('.yes');
+let muteBtn = document.querySelector('.audio');
+let music = document.querySelector('.music');
+let soundOn = true;
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -38,6 +41,7 @@ btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
 btnRestart.addEventListener("click", restart);
+muteBtn.addEventListener("click", muteUnmute);
 // ---------------------------------------------------------------------
 // Affiche/Enleve l'affichage des règles
 function displayRules(show = true) {
@@ -338,4 +342,13 @@ function restart() {
     numMarblesAI = 10;
     numMarblesPlayer = 10;
     game();
+}
+function muteUnmute() {
+    if(soundOn){
+        soundOn=false;
+    }
+    else{
+
+        soundOn=true;
+    }
 }
