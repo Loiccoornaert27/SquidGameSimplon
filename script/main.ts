@@ -15,6 +15,7 @@ let yesBtn = document.querySelector('.yes') as Element;
 let muteBtn= document.querySelector('.audio') as HTMLDivElement;
 let music=document.querySelector('.music') as HTMLMediaElement;
 let bg=document.querySelector('.imgbackground')as Element;
+let gameBG=document.querySelector('.gameBG') as Element;
 
 let playerTurn: boolean = true; // tour du joueur vrai/faux
 let choixUser: String; //Va stocker si le choix est pair ou impair
@@ -383,7 +384,8 @@ async function nextLoop() {
 
 // Boucle de jeu
 function game() {
-    screenStart.setAttribute("style", "display: none");
+    btnStart.setAttribute("style", "display: none");
+    bg.setAttribute("src","../image/gameBackground.jpg");
 
     playerTurn = whoPlayFirst();
     console.log(`Valeur de playerTurn début de game -> ${playerTurn}`);
@@ -415,7 +417,7 @@ function muteUnmute(){
 /***Fonction qui met en pause l'animation du gif *****/
 document.addEventListener('DOMContentLoaded', function () {
     async function stopAnim(){
-    await sleep(4000);
+    await sleep(5000);
     bg.setAttribute("src","../image/background-static.png");
     bg.classList.remove("background");
     console.log("paused");

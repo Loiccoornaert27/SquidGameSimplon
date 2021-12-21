@@ -25,6 +25,7 @@ let yesBtn = document.querySelector('.yes');
 let muteBtn = document.querySelector('.audio');
 let music = document.querySelector('.music');
 let bg = document.querySelector('.imgbackground');
+let gameBG = document.querySelector('.gameBG');
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -329,7 +330,8 @@ function nextLoop() {
 }
 // Boucle de jeu
 function game() {
-    screenStart.setAttribute("style", "display: none");
+    btnStart.setAttribute("style", "display: none");
+    bg.setAttribute("src", "../image/gameBackground.jpg");
     playerTurn = whoPlayFirst();
     console.log(`Valeur de playerTurn début de game -> ${playerTurn}`);
     beginGame();
@@ -356,7 +358,7 @@ function muteUnmute() {
 document.addEventListener('DOMContentLoaded', function () {
     function stopAnim() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield sleep(4000);
+            yield sleep(5000);
             bg.setAttribute("src", "../image/background-static.png");
             bg.classList.remove("background");
             console.log("paused");
