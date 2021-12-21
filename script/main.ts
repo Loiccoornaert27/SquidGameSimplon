@@ -13,7 +13,7 @@ const btnRestart = document.querySelector(".restart-button") as HTMLDivElement;
 let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
 let muteBtn= document.querySelector('.muteBtn') as HTMLDivElement;
-let music=document.querySelector('.music') as HTMLMediaElement;
+let music=document.getElementsByTagName('audio')[0] as HTMLMediaElement;
 let bg=document.querySelector('.imgbackground')as Element;
 let gameBG=document.querySelector('.gameBG') as Element;
 
