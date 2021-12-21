@@ -13,8 +13,8 @@ const btnRestart = document.querySelector(".restart-button") as HTMLDivElement;
 let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
 let muteBtn= document.querySelector('.audio') as HTMLDivElement;
+let music=document.querySelector('.music') as HTMLMediaElement;
 
-let soundOn: boolean= true;
 let playerTurn: boolean = true; // tour du joueur vrai/faux
 let choixUser: String; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -34,7 +34,7 @@ btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
 btnRestart.addEventListener("click", restart);
-muteBtn.addEventListener("click",muteUnmute)
+muteBtn.addEventListener("click",muteUnmute);
 
 
 // ---------------------------------------------------------------------
@@ -402,5 +402,10 @@ function restart(){
 }
 
 function muteUnmute(){
-
+    if(!music.muted){
+        music.muted=true;
+    }
+    else{
+        music.muted=false;
+    }
 }

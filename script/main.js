@@ -24,7 +24,6 @@ let noBtn = document.querySelector('.no');
 let yesBtn = document.querySelector('.yes');
 let muteBtn = document.querySelector('.audio');
 let music = document.querySelector('.music');
-let soundOn = true;
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -344,11 +343,11 @@ function restart() {
     game();
 }
 function muteUnmute() {
-    if(soundOn){
-        soundOn=false;
+    if (!music.muted) {
+        
+        music.muted = true;
     }
-    else{
-
-        soundOn=true;
+    else {
+        music.muted = false;
     }
 }
