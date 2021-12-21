@@ -272,9 +272,7 @@ body{
 .audio{
     overflow: hidden;
     width: 3em;     
-    /* background: white;      */
     height: 3,2em;     
-    border-radius: 50%;
     position:fixed; right: 80px; top:20px;
  }
 
