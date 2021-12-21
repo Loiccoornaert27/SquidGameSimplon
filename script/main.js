@@ -25,7 +25,7 @@ let yesBtn = document.querySelector('.yes');
 let muteBtn = document.querySelector('.muteBtn');
 let music = document.querySelector('.music');
 let bg = document.querySelector('.imgbackground');
-// let gameBG=document.querySelector('.gameBG') as Element;
+let gameBG = document.querySelector('.gameBG');
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -330,8 +330,8 @@ function nextLoop() {
 }
 // Boucle de jeu
 function game() {
-    btnStart.setAttribute("style", "display: none");
-    bg.setAttribute("src", "../image/gameBackground.jpg");
+    screenStart.setAttribute("style", "display: none");
+    document.body.style.background = "url('../image/gameBackground.jpg')";
     playerTurn = whoPlayFirst();
     console.log(`Valeur de playerTurn début de game -> ${playerTurn}`);
     beginGame();
