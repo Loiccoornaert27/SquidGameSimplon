@@ -22,10 +22,10 @@ const btnRules = document.querySelector(".rules-button");
 const btnRestart = document.querySelector(".restart-button");
 let noBtn = document.querySelector('.no');
 let yesBtn = document.querySelector('.yes');
-let muteBtn = document.querySelector('.audio');
+let muteBtn = document.querySelector('.muteBtn');
 let music = document.querySelector('.music');
 let bg = document.querySelector('.imgbackground');
-let gameBG = document.querySelector('.gameBG');
+// let gameBG=document.querySelector('.gameBG') as Element;
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -348,9 +348,11 @@ function restart() {
 /***Fonction qui gère le bouton mute ******/
 function muteUnmute() {
     if (!music.muted) {
+        muteBtn.setAttribute("src", "../image/mut-but-w.png");
         music.muted = true;
     }
     else {
+        muteBtn.setAttribute("src", "../image/vol-but-w.png");
         music.muted = false;
     }
 }

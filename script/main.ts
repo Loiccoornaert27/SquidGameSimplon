@@ -12,10 +12,10 @@ const btnRules = document.querySelector(".rules-button") as HTMLDivElement;
 const btnRestart = document.querySelector(".restart-button") as HTMLDivElement;
 let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
-let muteBtn= document.querySelector('.audio') as HTMLDivElement;
+let muteBtn= document.querySelector('.muteBtn') as HTMLDivElement;
 let music=document.querySelector('.music') as HTMLMediaElement;
 let bg=document.querySelector('.imgbackground')as Element;
-let gameBG=document.querySelector('.gameBG') as Element;
+// let gameBG=document.querySelector('.gameBG') as Element;
 
 let playerTurn: boolean = true; // tour du joueur vrai/faux
 let choixUser: String; //Va stocker si le choix est pair ou impair
@@ -407,9 +407,11 @@ function restart(){
 /***Fonction qui gère le bouton mute ******/
 function muteUnmute(){
     if(!music.muted){
+        muteBtn.setAttribute("src","../image/mut-but-w.png");
         music.muted=true;
     }
     else{
+        muteBtn.setAttribute("src","../image/vol-but-w.png");
         music.muted=false;
     }
 }
