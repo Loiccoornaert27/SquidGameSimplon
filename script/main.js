@@ -24,7 +24,7 @@ let noBtn = document.querySelector('.no');
 let yesBtn = document.querySelector('.yes');
 let muteBtn = document.querySelector('.audio');
 let music = document.querySelector('.music');
-let bg = document.querySelector('.body');
+let bg = document.querySelector('.imgbackground');
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
 // let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
@@ -353,12 +353,14 @@ function muteUnmute() {
     }
 }
 /***Fonction qui met en pause l'animation du gif *****/
-function stopAnim() {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield sleep(1500);
-        bg.setAttribute("animation-play-state", "paused");
-        console.log("paused");
-    });
-}
-//Au chargement de la page.
-document.onload = stopAnim;
+document.addEventListener('DOMContentLoaded', function () {
+    function stopAnim() {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield sleep(4000);
+            bg.setAttribute("src", "../image/background-static.png");
+            bg.classList.remove("background");
+            console.log("paused");
+        });
+    }
+    stopAnim();
+});

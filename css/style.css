@@ -170,7 +170,7 @@
 }
 
 .yes, .no {
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 5px;
     padding: 1vh;
 }
@@ -204,7 +204,7 @@
 }
 
 .choice {
-    border: 1px solid black;
+    border: 1px solid rgb(255, 255, 255);
     width: 45vw;
     height: 5vh;
     display: flex;
@@ -269,11 +269,11 @@
     overflow: hidden;
     width: 3em;     
     background: white;     
-    height: 4em;     
+    height: 3,2em;     
     border-radius: 50%;
     position:fixed; right: 80px; top:20px;
  }
 
- .body{
-     background-image: url("../image/background.gif");
- }
+body{
+    overflow:hidden;
+}
