@@ -239,3 +239,7 @@
     border-radius: 50%;
     position:fixed; right: 80px; top:20px;
  }
+
+ .body{
+     background-image: url("../image/background.gif");
+ }

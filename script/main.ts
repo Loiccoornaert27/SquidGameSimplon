@@ -14,6 +14,7 @@ let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
 let muteBtn= document.querySelector('.audio') as HTMLDivElement;
 let music=document.querySelector('.music') as HTMLMediaElement;
+let bg=document.querySelector('.body')as Element;
 
 let playerTurn: boolean = true; // tour du joueur vrai/faux
 let choixUser: String; //Va stocker si le choix est pair ou impair
@@ -401,6 +402,7 @@ function restart(){
     game();
 }
 
+/***Fonction qui gère le bouton mute ******/
 function muteUnmute(){
     if(!music.muted){
         music.muted=true;
@@ -409,3 +411,13 @@ function muteUnmute(){
         music.muted=false;
     }
 }
+
+/***Fonction qui met en pause l'animation du gif *****/
+async function stopAnim(){
+    await sleep(1500);
+    bg.setAttribute("animation-play-state","paused");
+    console.log("paused");
+}
+
+//Au chargement de la page.
+document.onload = stopAnim;
