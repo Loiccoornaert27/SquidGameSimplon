@@ -384,6 +384,7 @@ async function nextLoop() {
 
 // Boucle de jeu
 function game() {
+    music.play();
     screenStart.setAttribute("style", "display: none");
     document.body.style.background= "url('../image/gameBackground.jpg')"; //mise en place de l'image du background
 
