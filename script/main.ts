@@ -24,7 +24,6 @@ let numMarblesPlayer: number = 10;//Initialisation du stock de billes joueur
 let numMarblesAI: number = 10;//Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI: number;// Nombre de billes parié par l'IA
-let marblesAIRandom: number;//Nombre de billes que l'IA fait deviner juré c'pas pareil que celui d'avant
 
 let playerChoiceConfirmed = false;
 
@@ -360,7 +359,7 @@ async function nextLoop() {
         //ajouter l'event pour choix joueur
         // choixUser = prompt("pair ou impair") as string;
 
-        let winlose: number = checkResult(marblesAIRandom, choixUser, marblesBetPlayer, playerTurn);
+        let winlose: number = checkResult(marblesBetAI, choixUser, marblesBetPlayer, playerTurn);
         numMarblesPlayer += winlose;
         numMarblesAI -= winlose;
         
