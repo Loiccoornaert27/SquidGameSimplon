@@ -288,7 +288,7 @@ function initBetAI(numMarblesAI, numMarblesPlayer) {
 function beginGame() {
     return __awaiter(this, void 0, void 0, function* () {
         displayScreenGame();
-        playerTurn ? updateTextMiddle("Vous commencez !") : updateTextMiddle("L'ordinateur commence !");
+        playerTurn ? updateTextMiddle("A vous de jouer !") : updateTextMiddle("L'ordinateur joue !");
         console.log("playerTurn is " + playerTurn);
         yield sleep(1500);
         marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);

@@ -332,7 +332,7 @@ async function beginGame() {
 
     displayScreenGame();
 
-    playerTurn ? updateTextMiddle("Vous commencez !") : updateTextMiddle("L'ordinateur commence !")  ;
+    playerTurn ? updateTextMiddle("A vous de jouer !") : updateTextMiddle("L'ordinateur joue !")  ;
 
     console.log("playerTurn is " + playerTurn);
 
