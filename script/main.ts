@@ -347,9 +347,8 @@ async function beginGame() {
     console.log("playerTurn is " + playerTurn);
 
     await sleep(1500);
-
-    marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
-    marblesAIRandom=AIRandomMarbles(numMarblesAI);
+    
+    playerTurn ? marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer) : marblesBetAI=AIRandomMarbles(numMarblesAI);
     
     playerTurn ? updateTextMiddle("Quelle quantité de billes voulez vous parier") : updateTextMiddle("Choisissez le nombre de billes a faire deviner");
 
