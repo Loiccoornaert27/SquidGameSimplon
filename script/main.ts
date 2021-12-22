@@ -360,7 +360,7 @@ async function nextLoop() {
         //ajouter l'event pour choix joueur
         // choixUser = prompt("pair ou impair") as string;
 
-        let winlose: number = checkResult(marblesAIRandom, choixUser, marblesBetPlayer, playerTurn);
+        let winlose: number = checkResult(marblesBetAI, choixUser, marblesBetPlayer, playerTurn);
         numMarblesPlayer += winlose;
         numMarblesAI -= winlose;
         
