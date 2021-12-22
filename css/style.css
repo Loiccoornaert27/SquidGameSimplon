@@ -8,7 +8,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Gugi';
+  font-family: 'Play';
 }
 
 /* -----------------Start Button----------------- */
@@ -174,7 +174,7 @@ body {
     backdrop-filter: blur(11.5px);
     -webkit-backdrop-filter: blur(11.5px);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    color: black;
+    color: whitesmoke;
     text-align: center;
 
 }
