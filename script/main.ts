@@ -341,7 +341,6 @@ async function beginGame() {
 }
 
 async function nextLoop() {
-    console.log("L'IA a parié "+marblesBetAI);
     if (playerTurn) {
         //ajouter l'event pour choix joueur
         // choixUser = prompt("pair ou impair") as string;
