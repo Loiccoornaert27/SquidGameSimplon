@@ -283,6 +283,7 @@ function aiChoose() {
 function checkResult(nbBilles: number, choixUser: String, nbPari: number, isJoueur: Boolean) {
     if (nbBilles % 2 == 0) {
         if (choixUser == "pair" && isJoueur || choixUser == "impair" && !isJoueur) {
+            nbPari>numMarblesAI?nbPari=numMarblesAI:nbPari=nbPari;
             updateTextMiddle(`tu gagnes ${nbPari} billes`)
             return nbPari;
         }
