@@ -33,7 +33,6 @@ let numMarblesPlayer = 10; //Initialisation du stock de billes joueur
 let numMarblesAI = 10; //Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI; // Nombre de billes parié par l'IA
-let marblesAIRandom; //Nombre de billes que l'IA fait deviner juré c'pas pareil que celui d'avant
 let playerChoiceConfirmed = false;
 btnRules.addEventListener("click", () => { displayRules(); });
 btnStart.addEventListener("click", game);
