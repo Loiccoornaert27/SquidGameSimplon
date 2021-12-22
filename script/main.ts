@@ -43,7 +43,7 @@ muteBtn.addEventListener("click",muteUnmute);
 
 // Affiche/Enleve l'affichage des règles
 function displayRules(show = true) {
-    show ? screenRules.setAttribute("style", "display: block") : screenRules.setAttribute("style", "display: none");
+    show ? screenRules.setAttribute("style", "display: flex") : screenRules.setAttribute("style", "display: none");
 }
 
 // Affiche/Enleve l'affichage des boutons Oui/Non pour la confirmation du choix de l'utilisateur

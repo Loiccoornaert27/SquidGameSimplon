@@ -107,9 +107,20 @@ body{
     z-index: 3;
 }
 
+.helper{
+    position:absolute;
+    width: 10%;
+    height:25%;
+    top: 10%;
+    left:10%;
+    display:flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
 .rules-notification {
     position: absolute;
-    width: 80%;
+    width: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
