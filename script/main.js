@@ -298,8 +298,7 @@ function beginGame() {
         playerTurn ? updateTextMiddle("A vous de jouer !") : updateTextMiddle("L'ordinateur joue !");
         console.log("playerTurn is " + playerTurn);
         yield sleep(1500);
-        marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
-        marblesAIRandom = AIRandomMarbles(numMarblesAI);
+        playerTurn ? marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer) : marblesBetAI = AIRandomMarbles(numMarblesAI);
         playerTurn ? updateTextMiddle("Quelle quantité de billes voulez vous parier") : updateTextMiddle("Choisissez le nombre de billes a faire deviner");
         displayMarblesPlayer();
     });
