@@ -358,11 +358,11 @@ function restart() {
 /***Fonction qui gère le bouton mute ******/
 function muteUnmute() {
     if (!music.muted) {
-        muteBtn.setAttribute("src", "../image/mut-but-w.png");
+        muteBtn.setAttribute("src", "../image/mute.png");
         music.muted = true;
     }
     else {
-        muteBtn.setAttribute("src", "../image/vol-but-w.png");
+        muteBtn.setAttribute("src", "../image/unmute.png");
         music.muted = false;
     }
 }
