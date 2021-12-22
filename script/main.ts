@@ -386,7 +386,7 @@ async function nextLoop() {
 function game() {
     music.play();
     screenStart.setAttribute("style", "display: none");
-    document.body.style.background= "url('../image/gameBackground.jpg')"; //mise en place de l'image du background
+    screenGame.style.backgroundImage= "url('../')"; //mise en place de l'image du background
 
     playerTurn = whoPlayFirst();
     console.log(`Valeur de playerTurn début de game -> ${playerTurn}`);
