@@ -8,11 +8,14 @@ const closeWindowRules = document.querySelector(".close-rules") as HTMLButtonEle
 const player_hand = document.querySelector(".playerHand-close") as HTMLDivElement;
 const ai_hand = document.querySelector(".iaHand-close") as HTMLDivElement;
 let txtMain = document.querySelector(".display-text") as HTMLDivElement;
-const btnRules = document.getElementsByClassName("rules-button")[0] as HTMLElement;
-const btnRestart = document.getElementsByClassName("restart-button")[0] as HTMLElement;
+const btnRules = document.querySelector(".rules-button") as HTMLDivElement;
+const btnRestart = document.querySelector(".restart-button") as HTMLDivElement;
 let noBtn = document.querySelector('.no') as Element;
 let yesBtn = document.querySelector('.yes') as Element;
-
+let muteBtn= document.querySelector('.muteBtn') as HTMLDivElement;
+let music=document.getElementsByTagName('audio')[0] as HTMLMediaElement;
+let bg=document.querySelector('.imgbackground')as Element;
+let gameBG=document.querySelector('.gameBG') as Element;
 
 let playerTurn: boolean = true; // tour du joueur vrai/faux
 let choixUser: String; //Va stocker si le choix est pair ou impair
@@ -33,6 +36,7 @@ btnImpair.addEventListener("click", impairClick);
 noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
 btnRestart.addEventListener("click", restart);
+muteBtn.addEventListener("click",muteUnmute);
 
 
 // ---------------------------------------------------------------------
@@ -374,13 +378,14 @@ async function nextLoop() {
     else{
         numMarblesPlayer <= 0 ? updateTextMiddle("Tu as perdu !") : updateTextMiddle("Tu as gagné !");
         console.log("C'est fini")
-        btnRestart.setAttribute("style", "display: flex");
+        btnRestart.style.display= "flex";
     }
 }
 
 // Boucle de jeu
 function game() {
     screenStart.setAttribute("style", "display: none");
+    document.body.style.background= "url('../image/gameBackground.jpg')"; //mise en place de l'image du background
 
     playerTurn = whoPlayFirst();
     console.log(`Valeur de playerTurn début de game -> ${playerTurn}`);
@@ -398,3 +403,26 @@ function restart(){
     numMarblesPlayer=10;
     game();
 }
+
+/***Fonction qui gère le bouton mute ******/
+function muteUnmute(){
+    if(!music.muted){
+        muteBtn.setAttribute("src","../image/mut-but-w.png");
+        music.muted=true;
+    }
+    else{
+        muteBtn.setAttribute("src","../image/vol-but-w.png");
+        music.muted=false;
+    }
+}
+
+/***Fonction qui met en pause l'animation du gif *****/
+document.addEventListener('DOMContentLoaded', function () {
+    async function stopAnim(){
+    await sleep(5000);
+    bg.setAttribute("src","../image/background-static.png");
+    bg.classList.remove("background");
+    console.log("paused");
+    }
+    stopAnim();
+});
