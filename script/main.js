@@ -274,15 +274,8 @@ function whoPlayFirst() {
 //marblesBetIA : pari de l'IA
 function initBetAI(numMarblesAI, numMarblesPlayer) {
     let min = Math.ceil(1);
-    //20% de chance de parier plus que le stock de billes du joueur
-    let chanceToBetMore = Math.random();
     let max;
-    if (chanceToBetMore < 0.7) {
-        max = Math.floor(numMarblesAI + 1 && numMarblesPlayer + 1);
-    }
-    else {
-        max = Math.floor(numMarblesAI + 1);
-    }
+    max = Math.floor(numMarblesAI + 1);
     return Math.floor(Math.random() * (max - min)) + min;
 }
 function beginGame() {
@@ -314,6 +307,7 @@ function nextLoop() {
             numMarblesAI -= winlose;
         }
         yield revealHands();
+        console.log("L'IA a parié " + marblesBetAI);
         console.log("nombres de billes joueur : " + numMarblesPlayer);
         console.log("nombres de billes IA : " + numMarblesAI);
         playerTurn === true ? playerTurn = false : playerTurn = true;
