@@ -24,6 +24,7 @@ let numMarblesPlayer: number = 10;//Initialisation du stock de billes joueur
 let numMarblesAI: number = 10;//Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI: number;// Nombre de billes parié par l'IA
+let marblesAIRandom: number;//Nombre de billes que l'IA fait deviner juré c'pas pareil que celui d'avant
 
 let playerChoiceConfirmed = false;
 
@@ -314,13 +315,27 @@ function whoPlayFirst() {
 //Génère un nombre de billes pariées par l'IA
 //numMarblesAI : nombres de billes de l'IA
 //numMarblesPlayer : nombres de billes du joueur
-//marblesBetIA : pari de l'IA
+//marblesBetIA : pari de l'IA. Elle pari en fonction de son nombre de billes ou de celles du joueur
 function initBetAI(numMarblesAI: number, numMarblesPlayer: number) {
     let min = Math.ceil(1);
     let max: number;
+    if(numMarblesAI>numMarblesPlayer){
+        max=Math.floor(numMarblesPlayer + 1);
+    }
+    else{
+        max = Math.floor(numMarblesAI + 1);
+    }
+    
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+/**** Fonction pour que l'ia pioche dans son sachet un nombre aléatoire *****/
+//C'est different de la fonction d'avant parce-que c'pas pour parier mais pour faire deviner pair ou impair fait pas iech
+function AIRandomMarbles(numMarblesAI:number){
+    let min=Math.ceil(1);
+    let max: number;
     max = Math.floor(numMarblesAI + 1);
     return Math.floor(Math.random() * (max - min)) + min;
-    
 }
 
 async function beginGame() {
@@ -334,6 +349,7 @@ async function beginGame() {
     await sleep(1500);
 
     marblesBetAI = initBetAI(numMarblesAI, numMarblesPlayer);
+    marblesAIRandom=AIRandomMarbles(numMarblesAI);
     
     playerTurn ? updateTextMiddle("Quelle quantité de billes voulez vous parier") : updateTextMiddle("Choisissez le nombre de billes a faire deviner");
 
@@ -345,7 +361,7 @@ async function nextLoop() {
         //ajouter l'event pour choix joueur
         // choixUser = prompt("pair ou impair") as string;
 
-        let winlose: number = checkResult(marblesBetAI, choixUser, marblesBetPlayer, playerTurn);
+        let winlose: number = checkResult(marblesAIRandom, choixUser, marblesBetPlayer, playerTurn);
         numMarblesPlayer += winlose;
         numMarblesAI -= winlose;
         
