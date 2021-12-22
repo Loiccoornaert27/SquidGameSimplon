@@ -97,6 +97,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    color:white;
 }
 
 
@@ -126,13 +127,15 @@ body{
     transform: translate(-50%, -50%);
     height: 80vh;
     border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    background-color: aliceblue;
+    background-color: rgb(128, 128, 128,0.90);
     z-index: 1;
+    color: whitesmoke;
+    /* border: 5px dashed #f02d7c; */
 }
 
 .rules-notification p {
@@ -150,7 +153,10 @@ body{
     position: absolute;
     top: -15px;
     left: -15px;
-    background-color: aquamarine;
+    background-color: #f02d7c;
+    color: whitesmoke;
+    /* border: 2.5px dashed #f02d7c; */
+    
 }
 
 /* -----------------Choose----------------- */
