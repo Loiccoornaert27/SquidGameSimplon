@@ -18,6 +18,7 @@ body {
   height: 100vh;
   z-index: -1;
   background-color: #090b08;
+
 }
 
 .start-button {
@@ -39,6 +40,8 @@ body {
   -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
   animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
   box-shadow: 0 0 0 0 rgba(241, 46, 124, 0.7);
+  cursor: pointer;
+
 }
 
 .pulseLogo {
@@ -367,6 +370,7 @@ body {
   position: fixed;
   right: 0px;
   top: 12px;
+  cursor: pointer;
 }
 
 .muteBtn {
@@ -392,9 +396,7 @@ body {
     .logoBlock {
         margin: 0 auto;
         max-width: 805px;
-    }
-
-    
+    }    
 }
 
 
