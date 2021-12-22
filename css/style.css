@@ -23,7 +23,6 @@ body {
 .start-button {
   width: 15vh;
   height: 15vh;
-  border: 2px solid black;
   background-color: #f12e7c;
   color: white;
   border-radius: 50%;
@@ -122,9 +121,8 @@ body {
   border: 2px solid black;
   border-radius: 5px;
   position: absolute;
-  top: 29px;
-  left: 48px;
-  transform: translate(-50%, -50%);
+  top: 1%;
+  left: 1%;
   text-align: center;
   background: rgba(255, 255, 255, 0.26);
   box-shadow: 0 8px 32px 0 rgba(236, 181, 247, 0.37);
@@ -205,10 +203,10 @@ body {
   z-index: -1;
   display: none;
   background-image: url("../image/background.jpg");
-  height: 100%; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 100%; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
 }
 
 .display-text {
@@ -346,11 +344,11 @@ body {
 
 .marblesInAIHand,
 .marblesInPlayerHand {
-  position: absolute;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 2.6vh 2.6vh 2.6vh 2.6vh;
-  left: 43vw;
+    position: absolute;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 2.6vh 2.6vh 2.6vh 2.6vh;
+    transform: translate(-13%, 29%);
 }
 
 .marblesInAIHand img,
@@ -371,4 +369,25 @@ body {
 .muteBtn {
   width: 2em;
   height: 2em;
+}
+
+
+@media only screen and (min-width: 802px) {
+    .display-text{
+        max-width: 650px;
+        font-size: 1.5em;
+    }
+
+    .validationButton{
+        width: 80%;
+    }
+
+    .choice{
+        max-width: 650px;
+    }
+
+    .logoBlock {
+        margin: 0 auto;
+        max-width: 805px;
+    }
 }
