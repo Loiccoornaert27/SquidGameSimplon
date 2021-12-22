@@ -291,7 +291,6 @@ function beginGame() {
 }
 function nextLoop() {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("L'IA a parié " + marblesBetAI);
         if (playerTurn) {
             //ajouter l'event pour choix joueur
             // choixUser = prompt("pair ou impair") as string;
@@ -327,7 +326,7 @@ function nextLoop() {
 function game() {
     music.play();
     screenStart.setAttribute("style", "display: none");
-    document.body.style.background = "url('../image/gameBackground.jpg')"; //mise en place de l'image du background
+    screenGame.style.backgroundImage = "url('../')"; //mise en place de l'image du background
     playerTurn = whoPlayFirst();
     console.log(`Valeur de playerTurn début de game -> ${playerTurn}`);
     beginGame();
