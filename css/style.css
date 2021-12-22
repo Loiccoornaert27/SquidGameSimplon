@@ -108,6 +108,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: white;
   width: fit-content;
+  cursor: pointer;
 }
 
 .restart-button p {
@@ -132,6 +133,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: white;
   height: fit-content;
+  cursor: pointer;
 }
 
 .rules-button p {
@@ -142,62 +144,54 @@ body {
   display: none;
 }
 
-.helper{
-    position:absolute;
-    width: auto;
-    height:25%;
-    bottom: 10%;
-    right:2%;
-    display:flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    z-index: 2;
-
-}
-
 .rules-notification {
     position: absolute;
-    width: 50%;
+    width: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 80vh;
     border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     z-index: 1;
     font-size: 1em;
-    background: rgba(255, 255, 255, 0.26);
+    background: rgba(0, 0, 0, 0.6);
     box-shadow: 0 8px 32px 0 rgba(236, 181, 247, 0.37);
     backdrop-filter: blur(11.5px);
     -webkit-backdrop-filter: blur(11.5px);
     border: 1px solid rgba(255, 255, 255, 0.18);
     color: whitesmoke;
     text-align: center;
-
 }
 
 .rules-notification p {
     padding: 2vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
+    overflow: hidden;
+    margin-top: 4vh;
+}
+
+.rules-notification h2 {
+    margin-top: 2vh;
 }
 
 .close-rules {
     width: 4vh;
     height: 4vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     border-radius: 50%;
     position: absolute;
     top: -15px;
     left: -15px;
     background-color: #f02d7c;
     color: whitesmoke;
-    
+    cursor: pointer;
+}
+
+.helper {
+    display: none;
 }
 
 /* -----------------Choose----------------- */
@@ -225,7 +219,7 @@ body {
   justify-content: space-between;
   align-items: center;
   height: fit-content;
-  background: rgba(255, 255, 255, 0.26);
+  background: rgba(0, 0, 0, 0.26);
   box-shadow: 0 8px 32px 0 rgba(236, 181, 247, 0.37);
   backdrop-filter: blur(11.5px);
   -webkit-backdrop-filter: blur(11.5px);
@@ -253,11 +247,14 @@ body {
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   padding: 1vh;
+  cursor: pointer;
 }
 
 .marble {
   height: 5vh;
   width: auto;
+  cursor: pointer;
+
 }
 
 .player-marbles {
@@ -299,6 +296,8 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: white;
+  cursor: pointer;
+
 }
 
 /* -----------------Hands----------------- */
@@ -394,4 +393,22 @@ body {
         margin: 0 auto;
         max-width: 805px;
     }
+
+    
+}
+
+
+@media only screen and (min-width: 500px) {
+    .helper{
+        display: block;
+        position:relative;
+        height: 27%;
+        bottom: 2%;
+        left: 66%;
+    }
+
+    .rules-notification { 
+        max-width: 398px;
+    }
+
 }
