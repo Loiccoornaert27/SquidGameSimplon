@@ -11,6 +11,10 @@ body {
   font-family: 'Play';
 }
 
+p {
+  text-shadow: 5px 6px 4px #54104C;
+}
+
 /* -----------------Start Button----------------- */
 .screen-start {
   /* display: none; */
