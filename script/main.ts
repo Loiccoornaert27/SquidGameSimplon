@@ -432,7 +432,7 @@ function muteUnmute(){
 document.addEventListener('DOMContentLoaded', function () {
     async function stopAnim(){
     await sleep(5000);
-    bg.setAttribute("src","../image/background-static.png");
+    bg.setAttribute("src","./image/background-static.png");
     bg.classList.remove("background");
     console.log("paused");
     }
