@@ -52,7 +52,7 @@ function displayConfirmationButton(show = true) {
 
     if (show) {
         confirmationBtn.setAttribute("style", "display: flex");
-        updateTextMiddle(`Voulez vous pariez ${marblesBetPlayer} ${marblesBetPlayer === 1 ? "bille" : "billes"} ? `);
+        playerTurn ? updateTextMiddle(`Voulez vous pariez ${marblesBetPlayer} ${marblesBetPlayer === 1 ? "bille" : "billes"} ? `) : updateTextMiddle(`Voulez vous mettre ${marblesBetPlayer} ${marblesBetPlayer === 1 ? "bille dans votre main " : "billes dans votre main "} ? `)
     }
     else {
         confirmationBtn.setAttribute("style", "display: none");
@@ -191,7 +191,7 @@ function noButton() {
 
     displayConfirmationButton(false);
 
-    updateTextMiddle(`Choisissez le nombre de billes à parier`);
+    playerTurn ? updateTextMiddle(`Choisissez le nombre de billes à parier`) : updateTextMiddle(`Choisissez le nombre de billes à mettre dans votre main`);
 }
 
 // Enleve les billes joueur et fait apparaitre les bouton pair/impair

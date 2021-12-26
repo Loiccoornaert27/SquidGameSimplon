@@ -166,16 +166,23 @@ body {
     text-align: center;
 }
 
-.rules-notification p {
+.rules-notification__description {
     padding: 2vh;
     display: flex;
     flex-direction: column;  
     overflow: hidden;
-    margin-top: 4vh;
+    font-size: 1.3em;
+    overflow-y: scroll;
+    height: 80%;
+}
+
+.rules-notification p {
+  height: fit-content;
 }
 
 .rules-notification h2 {
     margin-top: 2vh;
+    padding: 1em;
 }
 
 .close-rules {
@@ -402,15 +409,18 @@ body {
 
 @media only screen and (min-width: 500px) {
     .helper{
-        display: block;
-        position:relative;
-        height: 27%;
-        bottom: 2%;
-        left: 66%;
+      display: block;
+      position: absolute;
+      height: 50%;
+      bottom: -5%;
+      left: 93%;
     }
 
     .rules-notification { 
         max-width: 398px;
     }
 
+    .rules-notification__description{
+      overflow-y: hidden;
+    }
 }
