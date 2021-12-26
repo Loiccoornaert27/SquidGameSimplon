@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./script/main.js" defer ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">    
+    <title>Squid Game Marbles</title>
+</head>
+<body>
+        <div class="rules-button">
+            <p>Règles du jeu</p>
+        </div>
+        <div class="restart-button">
+            <p>Recommencer une partie</p>
+        </div>
+        <div class="screen-start">
+            <div class="logoBlock">
+                <img class="imgbackground" src="./image/logo.gif" alt="logo squid game">
+            </div>
+            <div class="start-button">
+                <span class="pulse-button">Commencer</span> 
+            </div>
+        </div>
+
+        <div class="screen-rules">
+          
+            <div class="rules-notification">
+                <h2>Bienvenue dans Squid Game Marbles !</h2>
+                <div class="rules-notification__description">
+                    <p>
+                        Dans ce jeu, le but est de garder ses billes.<br><br>Si vous commencez, vous choisirez le nombre de billes que vous voulez parier avant de deviner si le nombre de billes de l'adversaire est pair, ou impair En cas de victoire, vous empocherez autant de billes que vous aurez parié. Mais attention ! En cas de défaite, c'est votre adversaire qui remportera votre mise !<br><br>Lors du tour de votre adversaire, vous aller choisir un nombre de billes, et votre adversaire devra deviner si celui-ci est pair ou impair. S'il se trompe, vous gagnerez ses billes mises en jeu.<br><br>Le premier qui perd toutes ses billes a perdu. Bonne chance !
+                    </p>
+                </div>
+                <img class="helper" src="image/squid-game-6723533_1280.png" alt="squid_help"></img>
+                <div class="close-rules"><span>X</span></div>
+            </div>
+        </div>
+
+        <div class="screen-game">
+            <div class="display-text">
+                <p>Choisissez le nombre de billes à parier</p>
+                <div class="validationButton">
+                    <div class="yes"><span>Oui</span></div>
+                    <div class="no"><span>Non</span></div>
+                </div>
+            </div>
+
+            <div class="player-marbles"> </div>
+
+            <div class="player-choice">
+                <div class="pair-bloc-choice choice">Pair</div>
+                <div class="impair-bloc-choice choice">Impair</div>
+            </div>
+        
+            <div class="hands">
+                <div class="iaHand">
+                    <div class="iaHand-close">
+                        <img src="./image/closed_hand.png" alt="Main fermé">
+                    </div>
+                    <div class="iaHand-open">
+                        <img src="./image/open_hand.png" alt="Main ouverte">
+                        <div class="marblesInAIHand">
+                            <!-- <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille"> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="playerHand">
+                    <div class="playerHand-close">
+                        <img src="./image/closed_hand.png" alt="Main fermé">
+                    </div>
+                    <div class="playerHand-open">
+                        <img src="./image/open_hand.png" alt="Main ouverte">
+                        <div class="marblesInPlayerHand">
+                            <!-- <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille">
+                            <img src="./image/bille.png" alt="bille"> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class = "audio">
+            <img class="muteBtn" src="image/unmute.png" alt="mute"></img>
+            <audio class = "music"
+            src="media/SQUID-GAME.mp3"
+            loop>
+        </audio>
+        </div>
+</body>
+</html>
