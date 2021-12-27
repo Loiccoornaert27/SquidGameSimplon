@@ -1,4 +1,10 @@
 "use strict";
+//  _____   ____  __  __    _____           _   _             
+// |  __ \ / __ \|  \/  |  / ____|         | | (_)            
+// | |  | | |  | | \  / | | (___   ___  ___| |_ _  ___  _ __  
+// | |  | | |  | | |\/| |  \___ \ / _ \/ __| __| |/ _ \| '_ \ 
+// | |__| | |__| | |  | |  ____) |  __/ (__| |_| | (_) | | | |
+// |_____/ \____/|_|  |_| |_____/ \___|\___|\__|_|\___/|_| |_|
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -17,23 +23,33 @@ const btnImpair = document.querySelector(".impair-bloc-choice");
 const closeWindowRules = document.querySelector(".close-rules");
 const player_hand = document.querySelector(".playerHand-close");
 const ai_hand = document.querySelector(".iaHand-close");
-let txtMain = document.querySelector(".display-text");
+const txtMain = document.querySelector(".display-text");
 const btnRules = document.querySelector(".rules-button");
 const btnRestart = document.querySelector(".restart-button");
-let noBtn = document.querySelector('.no');
-let yesBtn = document.querySelector('.yes');
-let muteBtn = document.querySelector('.muteBtn');
-let music = document.getElementsByTagName('audio')[0];
-let bg = document.querySelector('.imgbackground');
-let gameBG = document.querySelector('.gameBG');
+const noBtn = document.querySelector('.no');
+const yesBtn = document.querySelector('.yes');
+const muteBtn = document.querySelector('.muteBtn');
+const music = document.getElementsByTagName('audio')[0];
+const bg = document.querySelector('.imgbackground');
+//   _____ _       _           _                   _       _     _           
+//  / ____| |     | |         | |                 (_)     | |   | |          
+// | |  __| | ___ | |__   __ _| | __   ____ _ _ __ _  __ _| |__ | | ___  ___ 
+// | | |_ | |/ _ \| '_ \ / _` | | \ \ / / _` | '__| |/ _` | '_ \| |/ _ \/ __|
+// | |__| | | (_) | |_) | (_| | |  \ V / (_| | |  | | (_| | |_) | |  __/\__ \
+//  \_____|_|\___/|_.__/ \__,_|_|   \_/ \__,_|_|  |_|\__,_|_.__/|_|\___||___/
 let playerTurn = true; // tour du joueur vrai/faux
 let choixUser; //Va stocker si le choix est pair ou impair
-// let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
 let numMarblesPlayer = 10; //Initialisation du stock de billes joueur
 let numMarblesAI = 10; //Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI; // Nombre de billes parié par l'IA
 let playerChoiceConfirmed = false;
+//  ______               _     _      _     _                       
+// |  ____|             | |   | |    (_)   | |                      
+// | |____   _____ _ __ | |_  | |     _ ___| |_ ___ _ __   ___ _ __ 
+// |  __\ \ / / _ \ '_ \| __| | |    | / __| __/ _ \ '_ \ / _ \ '__|
+// | |___\ V /  __/ | | | |_  | |____| \__ \ ||  __/ | | |  __/ |   
+// |______\_/ \___|_| |_|\__| |______|_|___/\__\___|_| |_|\___|_|   
 btnRules.addEventListener("click", () => { displayRules(); });
 btnStart.addEventListener("click", game);
 closeWindowRules.addEventListener("click", () => { displayRules(false); });
@@ -43,7 +59,14 @@ noBtn.addEventListener("click", noButton);
 yesBtn.addEventListener("click", yesButton);
 btnRestart.addEventListener("click", restart);
 muteBtn.addEventListener("click", muteUnmute);
-// ---------------------------------------------------------------------
+//  _____  _           _                __                  _   _                 
+// |  __ \(_)         | |              / _|                | | (_)                
+// | |  | |_ ___ _ __ | | __ _ _   _  | |_ _   _ _ __   ___| |_ _  ___  _ __  ___ 
+// | |  | | / __| '_ \| |/ _` | | | | |  _| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+// | |__| | \__ \ |_) | | (_| | |_| | | | | |_| | | | | (__| |_| | (_) | | | \__ \
+// |_____/|_|___/ .__/|_|\__,_|\__, | |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+//              | |             __/ |                                             
+//              |_|            |___/                                              
 // Affiche/Enleve l'affichage des règles
 function displayRules(show = true) {
     show ? screenRules.setAttribute("style", "display: flex") : screenRules.setAttribute("style", "display: none");
@@ -104,7 +127,14 @@ function displayText(show = true) {
     let test = document.querySelector(".display-text");
     show ? test.style.display = "flex" : test.style.display = "none";
 }
-// -----------------------------------------------------------------------
+//   _____                           _   _               __  __            _     _           
+//  / ____|                         | | (_)             |  \/  |          | |   | |          
+// | |  __  ___ _ __   ___ _ __ __ _| |_ _ _ __   __ _  | \  / | __ _ _ __| |__ | | ___  ___ 
+// | | |_ |/ _ \ '_ \ / _ \ '__/ _` | __| | '_ \ / _` | | |\/| |/ _` | '__| '_ \| |/ _ \/ __|
+// | |__| |  __/ | | |  __/ | | (_| | |_| | | | | (_| | | |  | | (_| | |  | |_) | |  __/\__ \
+//  \_____|\___|_| |_|\___|_|  \__,_|\__|_|_| |_|\__, | |_|  |_|\__,_|_|  |_.__/|_|\___||___/
+//                                                __/ |                                      
+//                                               |___/                                       
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
 function generateMarblesPlayerImage() {
     const playerMarbles = document.getElementsByClassName("player-marbles")[0];
@@ -136,20 +166,12 @@ function generateMarblesInHands() {
         iaMarbleshand.appendChild(img); // Ajoute l'image créer dans la div
     }
 }
-function greyFilter(show = true) {
-    const playerMarbles = Array.from(document.querySelectorAll('.marble'));
-    let beginIndex = marblesBetPlayer;
-    if (show) {
-        for (let i = beginIndex; i < playerMarbles.length; i++) {
-            playerMarbles[i].setAttribute("style", "filter: grayscale(100%)");
-        }
-    }
-    else {
-        for (let i = 0; i < playerMarbles.length; i++) {
-            playerMarbles[i].removeAttribute("style");
-        }
-    }
-}
+//   _____             __ _                      _   _                _____           _   _             
+//  / ____|           / _(_)                    | | (_)              / ____|         | | (_)            
+// | |     ___  _ __ | |_ _ _ __ _ __ ___   __ _| |_ _  ___  _ __   | (___   ___  ___| |_ _  ___  _ __  
+// | |    / _ \| '_ \|  _| | '__| '_ ` _ \ / _` | __| |/ _ \| '_ \   \___ \ / _ \/ __| __| |/ _ \| '_ \ 
+// | |___| (_) | | | | | | | |  | | | | | | (_| | |_| | (_) | | | |  ____) |  __/ (__| |_| | (_) | | | |
+//  \_____\___/|_| |_|_| |_|_|  |_| |_| |_|\__,_|\__|_|\___/|_| |_| |_____/ \___|\___|\__|_|\___/|_| |_|
 //Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble) {
     greyFilter(false);
@@ -179,6 +201,28 @@ function yesButton() {
         }
     });
 }
+function greyFilter(show = true) {
+    const playerMarbles = Array.from(document.querySelectorAll('.marble'));
+    let beginIndex = marblesBetPlayer;
+    if (show) {
+        for (let i = beginIndex; i < playerMarbles.length; i++) {
+            playerMarbles[i].setAttribute("style", "filter: grayscale(100%)");
+        }
+    }
+    else {
+        for (let i = 0; i < playerMarbles.length; i++) {
+            playerMarbles[i].removeAttribute("style");
+        }
+    }
+}
+//  _____           _                           _            _      _____           _   _                 
+// |_   _|         | |                         | |          | |    / ____|         | | (_)                
+//   | |  _ __   __| | ___ _ __   ___ _ __   __| | ___ _ __ | |_  | (___   ___  ___| |_ _  ___  _ __  ___ 
+//   | | | '_ \ / _` |/ _ \ '_ \ / _ \ '_ \ / _` |/ _ \ '_ \| __|  \___ \ / _ \/ __| __| |/ _ \| '_ \/ __|
+//  _| |_| | | | (_| |  __/ |_) |  __/ | | | (_| |  __/ | | | |_   ____) |  __/ (__| |_| | (_) | | | \__ \
+// |_____|_| |_|\__,_|\___| .__/ \___|_| |_|\__,_|\___|_| |_|\__| |_____/ \___|\___|\__|_|\___/|_| |_|___/
+//                        | |                                                                             
+//                        |_|                                                                             
 // Change le texte du milieu
 function updateTextMiddle(str) {
     let displayTxt = document.querySelector(".display-text p");
@@ -223,7 +267,14 @@ function revealAIChoice(choixIA) {
         updateTextMiddle(`L'IA a choisi ${choixIA}`);
     });
 }
-// ----------------------------------------------------------------------------------
+//            _               _____           _   
+//      /\   | |             |  __ \         | |  
+//     /  \  | | __ _  ___   | |__) |_ _ _ __| |_ 
+//    / /\ \ | |/ _` |/ _ \  |  ___/ _` | '__| __|
+//   / ____ \| | (_| | (_) | | |  | (_| | |  | |_ 
+//  /_/    \_\_|\__, |\___/  |_|   \__,_|_|   \__|
+//               __/ |                            
+//              |___/                             
 /*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
 function aiChoose() {
     let num = Math.floor(Math.random() * 10);
@@ -243,21 +294,21 @@ function checkResult(nbBilles, choixUser, nbPari, isJoueur) {
     if (nbBilles % 2 == 0) {
         if (choixUser == "pair" && isJoueur || choixUser == "impair" && !isJoueur) {
             nbPari > numMarblesAI ? nbPari = numMarblesAI : nbPari = nbPari;
-            updateTextMiddle(`tu gagnes ${nbPari} billes`);
+            updateTextMiddle(`Tu gagnes ${nbPari} billes`);
             return nbPari;
         }
         else {
-            updateTextMiddle(`tu perds ${nbPari} billes`);
+            updateTextMiddle(`Tu perds ${nbPari} billes`);
             return nbPari * (-1);
         }
     }
     else {
         if (choixUser == "impair" && isJoueur || choixUser == "pair" && !isJoueur) {
-            updateTextMiddle(`tu gagnes ${nbPari} billes`);
+            updateTextMiddle(`Tu gagnes ${nbPari} billes`);
             return nbPari;
         }
         else {
-            updateTextMiddle(`tu perds ${nbPari} billes`);
+            updateTextMiddle(`Tu perds ${nbPari} billes`);
             return nbPari * (-1);
         }
     }

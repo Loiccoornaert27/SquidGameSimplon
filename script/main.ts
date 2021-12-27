@@ -1,33 +1,56 @@
-const btnStart = document.querySelector(".start-button") as HTMLButtonElement;
-const screenStart = document.querySelector(".screen-start") as HTMLButtonElement;
+//  _____   ____  __  __    _____           _   _             
+// |  __ \ / __ \|  \/  |  / ____|         | | (_)            
+// | |  | | |  | | \  / | | (___   ___  ___| |_ _  ___  _ __  
+// | |  | | |  | | |\/| |  \___ \ / _ \/ __| __| |/ _ \| '_ \ 
+// | |__| | |__| | |  | |  ____) |  __/ (__| |_| | (_) | | | |
+// |_____/ \____/|_|  |_| |_____/ \___|\___|\__|_|\___/|_| |_|
+                                                           
+
+const btnStart = document.querySelector(".start-button") as HTMLDivElement;
+const screenStart = document.querySelector(".screen-start") as HTMLDivElement;
 const screenRules = document.querySelector(".screen-rules") as HTMLDivElement;
 const screenGame = document.querySelector(".screen-game") as HTMLDivElement;
-const btnPair = document.querySelector(".pair-bloc-choice") as HTMLButtonElement;
-const btnImpair = document.querySelector(".impair-bloc-choice") as HTMLButtonElement;
-const closeWindowRules = document.querySelector(".close-rules") as HTMLButtonElement;
+const btnPair = document.querySelector(".pair-bloc-choice") as HTMLDivElement;
+const btnImpair = document.querySelector(".impair-bloc-choice") as HTMLDivElement;
+const closeWindowRules = document.querySelector(".close-rules") as HTMLDivElement;
 const player_hand = document.querySelector(".playerHand-close") as HTMLDivElement;
 const ai_hand = document.querySelector(".iaHand-close") as HTMLDivElement;
-let txtMain = document.querySelector(".display-text") as HTMLDivElement;
+const txtMain = document.querySelector(".display-text") as HTMLDivElement;
 const btnRules = document.querySelector(".rules-button") as HTMLDivElement;
 const btnRestart = document.querySelector(".restart-button") as HTMLDivElement;
-let noBtn = document.querySelector('.no') as Element;
-let yesBtn = document.querySelector('.yes') as Element;
-let muteBtn= document.querySelector('.muteBtn') as HTMLDivElement;
-let music=document.getElementsByTagName('audio')[0] as HTMLMediaElement;
-let bg=document.querySelector('.imgbackground')as Element;
-let gameBG=document.querySelector('.gameBG') as Element;
+const noBtn = document.querySelector('.no') as HTMLDivElement;
+const yesBtn = document.querySelector('.yes') as HTMLDivElement;
+const muteBtn = document.querySelector('.muteBtn') as HTMLDivElement;
+const music = document.getElementsByTagName('audio')[0] as HTMLMediaElement;
+const bg = document.querySelector('.imgbackground')as HTMLImageElement;
+
+
+//   _____ _       _           _                   _       _     _           
+//  / ____| |     | |         | |                 (_)     | |   | |          
+// | |  __| | ___ | |__   __ _| | __   ____ _ _ __ _  __ _| |__ | | ___  ___ 
+// | | |_ | |/ _ \| '_ \ / _` | | \ \ / / _` | '__| |/ _` | '_ \| |/ _ \/ __|
+// | |__| | | (_) | |_) | (_| | |  \ V / (_| | |  | | (_| | |_) | |  __/\__ \
+//  \_____|_|\___/|_.__/ \__,_|_|   \_/ \__,_|_|  |_|\__,_|_.__/|_|\___||___/
+                                                                         
+                                                                         
 
 let playerTurn: boolean = true; // tour du joueur vrai/faux
 let choixUser: String; //Va stocker si le choix est pair ou impair
-// let choixIA : String; //Va stocker si le choix est pair ou impair pour l'IA (obsolete)
 let numMarblesPlayer: number = 10;//Initialisation du stock de billes joueur
 let numMarblesAI: number = 10;//Initialisation du stock de billes IA
 let marblesBetPlayer = 0; // Nombre de billes parié par l'utilisateur
 let marblesBetAI: number;// Nombre de billes parié par l'IA
-
 let playerChoiceConfirmed = false;
 
 
+//  ______               _     _      _     _                       
+// |  ____|             | |   | |    (_)   | |                      
+// | |____   _____ _ __ | |_  | |     _ ___| |_ ___ _ __   ___ _ __ 
+// |  __\ \ / / _ \ '_ \| __| | |    | / __| __/ _ \ '_ \ / _ \ '__|
+// | |___\ V /  __/ | | | |_  | |____| \__ \ ||  __/ | | |  __/ |   
+// |______\_/ \___|_| |_|\__| |______|_|___/\__\___|_| |_|\___|_|   
+                                                                 
+                                                                 
 btnRules.addEventListener("click", () => { displayRules() });
 btnStart.addEventListener("click", game);
 closeWindowRules.addEventListener("click", () => { displayRules(false) });
@@ -39,7 +62,15 @@ btnRestart.addEventListener("click", restart);
 muteBtn.addEventListener("click",muteUnmute);
 
 
-// ---------------------------------------------------------------------
+//  _____  _           _                __                  _   _                 
+// |  __ \(_)         | |              / _|                | | (_)                
+// | |  | |_ ___ _ __ | | __ _ _   _  | |_ _   _ _ __   ___| |_ _  ___  _ __  ___ 
+// | |  | | / __| '_ \| |/ _` | | | | |  _| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+// | |__| | \__ \ |_) | | (_| | |_| | | | | |_| | | | | (__| |_| | (_) | | | \__ \
+// |_____/|_|___/ .__/|_|\__,_|\__, | |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+//              | |             __/ |                                             
+//              |_|            |___/                                              
+
 
 // Affiche/Enleve l'affichage des règles
 function displayRules(show = true) {
@@ -112,7 +143,14 @@ function displayText(show = true) {
     show ? test.style.display  = "flex" : test.style.display = "none";
 }
 
-// -----------------------------------------------------------------------
+//   _____                           _   _               __  __            _     _           
+//  / ____|                         | | (_)             |  \/  |          | |   | |          
+// | |  __  ___ _ __   ___ _ __ __ _| |_ _ _ __   __ _  | \  / | __ _ _ __| |__ | | ___  ___ 
+// | | |_ |/ _ \ '_ \ / _ \ '__/ _` | __| | '_ \ / _` | | |\/| |/ _` | '__| '_ \| |/ _ \/ __|
+// | |__| |  __/ | | |  __/ | | (_| | |_| | | | | (_| | | |  | | (_| | |  | |_) | |  __/\__ \
+//  \_____|\___|_| |_|\___|_|  \__,_|\__|_|_| |_|\__, | |_|  |_|\__,_|_|  |_.__/|_|\___||___/
+//                                                __/ |                                      
+//                                               |___/                                       
 
 // Génere les billes dans la mains du joueur en fonction de la variable numMarblesPlayer
 function generateMarblesPlayerImage() {
@@ -157,23 +195,16 @@ function generateMarblesInHands() {
     }
 }
 
-function greyFilter(show = true){
-    const playerMarbles = Array.from(document.querySelectorAll('.marble'));
 
-    let beginIndex = marblesBetPlayer;
-    if (show){
-        for(let i = beginIndex; i < playerMarbles.length; i++){
-            playerMarbles[i].setAttribute("style", "filter: grayscale(100%)")
-        }
-    }
-    else {
-        for(let i = 0; i < playerMarbles.length; i++){
-            playerMarbles[i].removeAttribute("style")
-        }
-    }
-  
-    
-}
+//   _____             __ _                      _   _                _____           _   _             
+//  / ____|           / _(_)                    | | (_)              / ____|         | | (_)            
+// | |     ___  _ __ | |_ _ _ __ _ __ ___   __ _| |_ _  ___  _ __   | (___   ___  ___| |_ _  ___  _ __  
+// | |    / _ \| '_ \|  _| | '__| '_ ` _ \ / _` | __| |/ _ \| '_ \   \___ \ / _ \/ __| __| |/ _ \| '_ \ 
+// | |___| (_) | | | | | | | |  | | | | | | (_| | |_| | (_) | | | |  ____) |  __/ (__| |_| | (_) | | | |
+//  \_____\___/|_| |_|_| |_|_|  |_| |_| |_|\__,_|\__|_|\___/|_| |_| |_____/ \___|\___|\__|_|\___/|_| |_|
+                                                                                                                                                                                                    
+
+
 
 //Confirmation du nb de billes
 function confirmationMarblesPLayer(numberOfMarble: number) {
@@ -210,6 +241,31 @@ async function yesButton() {
     }
 }
 
+function greyFilter(show = true){
+    const playerMarbles = Array.from(document.querySelectorAll('.marble'));
+
+    let beginIndex = marblesBetPlayer;
+    if (show){
+        for(let i = beginIndex; i < playerMarbles.length; i++){
+            playerMarbles[i].setAttribute("style", "filter: grayscale(100%)")
+        }
+    }
+    else {
+        for(let i = 0; i < playerMarbles.length; i++){
+            playerMarbles[i].removeAttribute("style")
+        }
+    }
+}
+
+//  _____           _                           _            _      _____           _   _                 
+// |_   _|         | |                         | |          | |    / ____|         | | (_)                
+//   | |  _ __   __| | ___ _ __   ___ _ __   __| | ___ _ __ | |_  | (___   ___  ___| |_ _  ___  _ __  ___ 
+//   | | | '_ \ / _` |/ _ \ '_ \ / _ \ '_ \ / _` |/ _ \ '_ \| __|  \___ \ / _ \/ __| __| |/ _ \| '_ \/ __|
+//  _| |_| | | | (_| |  __/ |_) |  __/ | | | (_| |  __/ | | | |_   ____) |  __/ (__| |_| | (_) | | | \__ \
+// |_____|_| |_|\__,_|\___| .__/ \___|_| |_|\__,_|\___|_| |_|\__| |_____/ \___|\___|\__|_|\___/|_| |_|___/
+//                        | |                                                                             
+//                        |_|                                                                             
+
 // Change le texte du milieu
 function updateTextMiddle(str: string) {
     let displayTxt = document.querySelector(".display-text p") as HTMLParagraphElement;
@@ -223,7 +279,6 @@ async function pairClick() {
     displayPairImpaire(false);
    
     nextLoop();
-
 }
 
 //Fonction qui enregistre le pair
@@ -260,7 +315,15 @@ async function revealAIChoice(choixIA : String){
     updateTextMiddle(`L'IA a choisi ${choixIA}`);
 }
 
-// ----------------------------------------------------------------------------------
+
+//            _               _____           _   
+//      /\   | |             |  __ \         | |  
+//     /  \  | | __ _  ___   | |__) |_ _ _ __| |_ 
+//    / /\ \ | |/ _` |/ _ \  |  ___/ _` | '__| __|
+//   / ____ \| | (_| | (_) | | |  | (_| | |  | |_ 
+//  /_/    \_\_|\__, |\___/  |_|   \__,_|_|   \__|
+//               __/ |                            
+//              |___/                             
 
 
 /*Fonction qui permet de déterminer si l'IA choisit pair ou impair*/
