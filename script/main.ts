@@ -283,21 +283,21 @@ function checkResult(nbBilles: number, choixUser: String, nbPari: number, isJoue
     if (nbBilles % 2 == 0) {
         if (choixUser == "pair" && isJoueur || choixUser == "impair" && !isJoueur) {
             nbPari>numMarblesAI?nbPari=numMarblesAI:nbPari=nbPari;
-            updateTextMiddle(`tu gagnes ${nbPari} billes`)
+            updateTextMiddle(`Tu gagnes ${nbPari} billes`)
             return nbPari;
         }
         else {
-            updateTextMiddle(`tu perds ${nbPari} billes`)
+            updateTextMiddle(`Tu perds ${nbPari} billes`)
             return nbPari * (-1);
         }
     }
     else {
         if (choixUser == "impair" && isJoueur || choixUser == "pair" && !isJoueur) {
-            updateTextMiddle(`tu gagnes ${nbPari} billes`)
+            updateTextMiddle(`Tu gagnes ${nbPari} billes`)
             return nbPari;
         }
         else {
-            updateTextMiddle(`tu perds ${nbPari} billes`)
+            updateTextMiddle(`Tu perds ${nbPari} billes`)
             return nbPari * (-1);
         }
     }
