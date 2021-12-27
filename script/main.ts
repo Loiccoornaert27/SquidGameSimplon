@@ -419,11 +419,11 @@ function restart(){
 /***Fonction qui gère le bouton mute ******/
 function muteUnmute(){
     if(!music.muted){
-        muteBtn.setAttribute("src","../image/mute.png");
+        muteBtn.setAttribute("src","./image/mute.png");
         music.muted=true;
     }
     else{
-        muteBtn.setAttribute("src","../image/unmute.png");
+        muteBtn.setAttribute("src","./image/unmute.png");
         music.muted=false;
     }
 }
